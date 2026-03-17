@@ -28,7 +28,6 @@
             cursor: pointer;
         }
         
-        /* Device Rotation Animation */
         .rotate-prompt {
             display: flex;
             flex-direction: column; align-items: center; justify-content: center;
@@ -46,35 +45,21 @@
             position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
             width: 6px; height: 6px; background: #00aaff; border-radius: 50%;
         }
-        @keyframes rotatePhone {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(-90deg); }
-            100% { transform: rotate(-90deg); }
-        }
+        @keyframes rotatePhone { 0% { transform: rotate(0deg); } 50% { transform: rotate(-90deg); } 100% { transform: rotate(-90deg); } }
 
-        @media (orientation: landscape) {
-            .rotate-prompt { display: none; }
-        }
+        @media (orientation: landscape) { .rotate-prompt { display: none; } }
 
         .tap-to-start {
-            font-size: 14px;
-            color: #555; letter-spacing: 4px; font-weight: bold;
+            font-size: 14px; color: #555; letter-spacing: 4px; font-weight: bold;
             animation: pulse 1.5s infinite; text-transform: uppercase;
         }
         .logo-container {
-            display: none;
-            position: relative; width: 300px; height: 300px;
+            display: none; position: relative; width: 300px; height: 300px;
             flex-direction: column; align-items: center; justify-content: center;
         }
         
-        .hex-svg {
-            width: 280px; height: 280px; position: absolute;
-            animation: spinFractal 15s linear infinite; z-index: 1;
-        }
-        .hex-svg-reverse {
-            width: 240px; height: 240px; position: absolute;
-            animation: spinFractalReverse 10s linear infinite; z-index: 1; opacity: 0.6;
-        }
+        .hex-svg { width: 280px; height: 280px; position: absolute; animation: spinFractal 15s linear infinite; z-index: 1; }
+        .hex-svg-reverse { width: 240px; height: 240px; position: absolute; animation: spinFractalReverse 10s linear infinite; z-index: 1; opacity: 0.6; }
         .hex-path { stroke-dasharray: 600; stroke-dashoffset: 600; }
         .h1 { animation: drawHex 1.5s ease-out forwards; }
         .h2 { transform-origin: center; transform: rotate(15deg); animation: drawHex 1.5s ease-out 0.2s forwards; }
@@ -86,68 +71,39 @@
         @keyframes spinFractalReverse { to { transform: rotate(-360deg); } }
 
         .tricky-text {
-            position: absolute;
-            font-size: 38px; font-weight: 900;
-            font-family: 'Segoe UI', sans-serif; color: #ffffff;
-            text-transform: uppercase; letter-spacing: 8px;
-            text-shadow: 0 0 15px rgba(0, 170, 255, 0.8);
-            z-index: 2; margin-left: 8px; mix-blend-mode: screen;
-            opacity: 0; animation: textReveal 2s cubic-bezier(0.1, 1, 0.5, 1) 0.6s forwards;
+            position: absolute; font-size: 38px; font-weight: 900; font-family: 'Segoe UI', sans-serif; color: #ffffff;
+            text-transform: uppercase; letter-spacing: 8px; text-shadow: 0 0 15px rgba(0, 170, 255, 0.8);
+            z-index: 2; margin-left: 8px; mix-blend-mode: screen; opacity: 0; animation: textReveal 2s cubic-bezier(0.1, 1, 0.5, 1) 0.6s forwards;
         }
         .tricky-sub {
-            position: absolute; top: 58%; color: #00ffcc;
-            font-size: 11px; letter-spacing: 10px; text-transform: uppercase;
-            font-weight: bold; z-index: 2; margin-left: 10px;
-            opacity: 0; animation: textRevealSub 1.5s cubic-bezier(0.1, 1, 0.5, 1) 1.2s forwards;
+            position: absolute; top: 58%; color: #00ffcc; font-size: 11px; letter-spacing: 10px; text-transform: uppercase;
+            font-weight: bold; z-index: 2; margin-left: 10px; opacity: 0; animation: textRevealSub 1.5s cubic-bezier(0.1, 1, 0.5, 1) 1.2s forwards;
         }
 
-        @keyframes textReveal {
-            0% { opacity: 0; transform: scale(0.8); filter: blur(8px); }
-            100% { opacity: 1; transform: scale(1); filter: blur(0); }
-        }
-        @keyframes textRevealSub {
-            0% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
-            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
-        }
+        @keyframes textReveal { 0% { opacity: 0; transform: scale(0.8); filter: blur(8px); } 100% { opacity: 1; transform: scale(1); filter: blur(0); } }
+        @keyframes textRevealSub { 0% { opacity: 0; transform: translateY(10px); filter: blur(5px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
 
         .intro-fade-out { animation: fadeOut 0.5s ease-out forwards !important; }
         @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
         
         /* APP CARDS */
-        .app-card {
-            background: #121212;
-            border-radius: 10px; border: 1px solid #2a2a2a;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); overflow: hidden; position: relative;
-        }
+        .app-card { background: #121212; border-radius: 10px; border: 1px solid #2a2a2a; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); overflow: hidden; position: relative; }
 
         /* --- TOP HEADER --- */
-        .header-row {
-            display: flex; flex-direction: row; height: 10vh; gap: 6px; flex-shrink: 0; width: 100%;
-        }
+        .header-row { display: flex; flex-direction: row; height: 10vh; gap: 6px; flex-shrink: 0; width: 100%; }
         .menu-btn, .fs-btn, .ad-btn {
-            background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 10px;
-            width: 10vh; height: 10vh; display: flex; justify-content: center; align-items: center;
-            font-size: 20px; cursor: pointer; flex-shrink: 0; transition: background 0.2s;
+            background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 10px; width: 10vh; height: 10vh; 
+            display: flex; justify-content: center; align-items: center; font-size: 20px; cursor: pointer; flex-shrink: 0; transition: background 0.2s;
         }
         .menu-btn:active, .fs-btn:active, .ad-btn:active { background: #333; }
         .ad-btn { font-size: 16px; } 
 
         .gyro-container { flex: 1; height: 100%; position: relative; }
-        .panel-label { 
-            position: absolute; top: 4px; left: 6px; font-size: 9px; font-weight: bold; color: #aaa;
-            z-index: 20; background: rgba(0,0,0,0.7); padding: 2px 6px; border-radius: 4px;
-            pointer-events: none;
-        }
+        .panel-label { position: absolute; top: 4px; left: 6px; font-size: 9px; font-weight: bold; color: #aaa; z-index: 20; background: rgba(0,0,0,0.7); padding: 2px 6px; border-radius: 4px; pointer-events: none; }
 
         /* --- MAIN QUAD GRID --- */
-        .quad-grid {
-            flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
-            gap: 6px; min-height: 0;
-        }
-        .quad-cell {
-            position: relative; width: 100%; height: 100%; min-height: 0; min-width: 0;
-            display: flex; flex-direction: column;
-        }
+        .quad-grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; min-height: 0; }
+        .quad-cell { position: relative; width: 100%; height: 100%; min-height: 0; min-width: 0; display: flex; flex-direction: column; }
 
         /* Quadrant 1: Video */
         video, canvas.overlay { position: absolute; width: 100%; height: 100%; top: 0; left: 0; object-fit: fill; }
@@ -165,35 +121,25 @@
         .result-card.visible { display: block; animation: fadeIn 0.2s ease; }
         .card h4 { margin: 0 0 4px 0; font-size: 9px; }
         
-        /* Clickable Mistake Row */
+        /* Clickable Rows */
         .mistake { display: flex; justify-content: space-between; border-bottom: 1px solid #2a2a2a; padding: 4px 2px; font-size: 8px; align-items: center;}
         .mistake:last-child { border-bottom: none; }
         .clickable-mistake { cursor: pointer; transition: background 0.2s; border-radius: 4px;}
         .clickable-mistake:hover { background: #2a2a2a; }
         .tag { font-size: 7px; font-weight: bold; border-radius: 3px; padding: 2px 4px; display: inline-block;}
 
-        /* --- TELEMETRY TIMELINE STYLES --- */
-        .timeline-row { display: flex; justify-content: space-between; align-items: center; background: #111; border: 1px solid #333; margin-top: 3px; padding: 3px 4px; border-radius: 4px; font-size: 8px; }
-        .timeline-icon { font-size: 10px; margin-right: 4px; }
-        .timeline-meta { color: #888; font-size: 7px; text-transform: uppercase; }
-        .timeline-time { color: #00ffcc; font-family: monospace; font-weight: bold; }
-
-        /* Quadrant 4: Wheel & Slider Container */
+        /* Quadrant 4: Wheel & Controls */
         .controls-wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%; position: relative;}
         .playback-controls { width: 100%; height: 100%; display: none; flex-direction: row; align-items: center; justify-content: center; gap: 20px;}
         
-        /* Overlay Size Slider */
         .slider-container { display: flex; flex-direction: column; align-items: center; height: 75%; }
         .slider-label { font-size: 8px; color: #888; font-weight: bold; text-transform: uppercase; margin-bottom: 5px;}
         input[type=range][orient=vertical] { writing-mode: bt-lr; -webkit-appearance: slider-vertical; width: 12px; height: 100%; background: #222; border-radius: 6px; outline: none; border: 1px solid #444; }
         input[type=range][orient=vertical]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; background: #00aaff; border-radius: 50%; cursor: pointer; box-shadow: 0 0 5px rgba(0,0,0,0.8); }
 
-        /* Dynamic Wheel Sizing */
         .wheel-container { 
-            width: min(70%, 25vh); aspect-ratio: 1; border-radius: 50%; 
-            background: conic-gradient(from 0deg, #161616, #333, #161616);
-            position: relative; cursor: grab; border: 3px solid #444;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.6); touch-action: none; display: flex; justify-content: center; align-items: center;
+            width: min(70%, 25vh); aspect-ratio: 1; border-radius: 50%; background: conic-gradient(from 0deg, #161616, #333, #161616);
+            position: relative; cursor: grab; border: 3px solid #444; box-shadow: 0 4px 15px rgba(0,0,0,0.6); touch-action: none; display: flex; justify-content: center; align-items: center;
         }
         .wheel-spinner { width: 100%; height: 100%; position: absolute; border-radius: 50%; pointer-events: none; background: repeating-conic-gradient(from 0deg, transparent 0deg 10deg, rgba(255,255,255,0.03) 10deg 20deg); }
         .wheel-indicator { position: absolute; top: 0; left: 50%; width: 4px; height: 12px; background: #00aaff; transform: translateX(-50%); border-radius: 2px; }
@@ -205,30 +151,16 @@
 
         /* --- SIDEBARS --- */
         .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 99; display: none; }
-        .sidebar {
-            position: fixed; top: 0; left: -200px; width: 180px; height: 100vh;
-            background: #111; border-right: 2px solid #333; z-index: 100;
-            display: flex; flex-direction: column; padding: 15px; box-sizing: border-box;
-            transition: left 0.3s ease; box-shadow: 5px 0 15px rgba(0,0,0,0.8); overflow-y: auto;
-        }
+        .sidebar { position: fixed; top: 0; left: -200px; width: 180px; height: 100vh; background: #111; border-right: 2px solid #333; z-index: 100; display: flex; flex-direction: column; padding: 15px; box-sizing: border-box; transition: left 0.3s ease; box-shadow: 5px 0 15px rgba(0,0,0,0.8); overflow-y: auto; }
         .sidebar.open { left: 0; }
         
-        .ad-sidebar {
-            position: fixed; top: 0; right: -20vw; width: 10vw; min-width: 80px; 
-            height: 100vh; background: #111; border-left: 2px solid #333; z-index: 100;
-            display: flex; flex-direction: column; padding: 10px; box-sizing: border-box;
-            transition: right 0.3s ease; box-shadow: -5px 0 15px rgba(0,0,0,0.8); overflow-y: auto; align-items: center; gap: 15px;
-        }
+        .ad-sidebar { position: fixed; top: 0; right: -20vw; width: 10vw; min-width: 80px; height: 100vh; background: #111; border-left: 2px solid #333; z-index: 100; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; transition: right 0.3s ease; box-shadow: -5px 0 15px rgba(0,0,0,0.8); overflow-y: auto; align-items: center; gap: 15px; }
         .ad-sidebar.open { right: 0; }
         .ad-banner { width: 100%; border-radius: 6px; border: 1px solid #444; overflow: hidden; display: block; text-decoration: none; flex-shrink: 0;}
         .ad-banner img { width: 100%; height: auto; display: block; object-fit: contain; background: #fff;}
         .ad-label { font-size: 9px; color: #888; font-weight: bold; text-transform: uppercase; text-align: center; border-bottom: 1px solid #333; padding-bottom: 5px; width: 100%; flex-shrink: 0;}
 
-        button { 
-            background: #007bff; color: white; border: none; padding: 12px 8px;
-            font-size: 12px; cursor: pointer; border-radius: 8px; font-weight: 600; 
-            margin-bottom: 10px; text-align: center; width: 100%; 
-        }
+        button { background: #007bff; color: white; border: none; padding: 12px 8px; font-size: 12px; cursor: pointer; border-radius: 8px; font-weight: 600; margin-bottom: 10px; text-align: center; width: 100%; }
         button:disabled { background: #333; color: #777; cursor: not-allowed; }
         .btn-green { background: #28a745; }
         .btn-gray { background: #2a2a2a; border: 1px solid #444; }
@@ -238,32 +170,19 @@
         #status { font-weight: bold; font-size: 11px; color: #ffaa00; margin-bottom: 15px; text-align: center; padding: 6px; border-radius: 6px; border: 1px solid rgba(255, 170, 0, 0.3); background: rgba(255, 170, 0, 0.1);}
 
         /* MODALS */
-        .modal {
-            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85);
-            justify-content: center; align-items: center;
-        }
-        .modal-content {
-            background-color: #121212; padding: 20px; border-radius: 12px; width: 85%; max-width: 450px;
-            border: 1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.9);
-        }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+        .modal-content { background-color: #121212; padding: 20px; border-radius: 12px; width: 85%; max-width: 450px; border: 1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.9); max-height: 90vh; overflow-y: auto;}
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
         .form-group { display: flex; flex-direction: column; margin-bottom: 10px;}
         .form-group label { font-size: 10px; color: #aaa; margin-bottom: 4px; }
         .form-group input, .form-group select { background: #1a1a1a; border: 1px solid #333; color: white; padding: 8px; border-radius: 6px; font-size: 12px; width: 100%; box-sizing: border-box; outline: none; }
-        
         optgroup { color: #aaa; font-style: normal; font-weight: bold; background: #222; }
 
-        /* --- TACTICAL BLUEPRINT STYLES --- */
+        /* --- INLINE PISTOL KINEMATICS DIAGRAM --- */
         .diagram-container {
             text-align: center; margin: 15px 0; background: #08111a; 
             padding: 15px 10px; border-radius: 8px; border: 1px solid #00aaff;
             box-shadow: inset 0 0 20px rgba(0, 170, 255, 0.15);
-        }
-        .tech-diagram {
-            width: 100%; max-width: 200px;
-            /* Turns standard B&W diagrams into glowing cyan/blue technological HUD elements */
-            filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg) brightness(1.2) drop-shadow(0 0 5px rgba(0,170,255,0.8));
-            mix-blend-mode: screen;
         }
         
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
@@ -368,159 +287,77 @@
     <div class="sidebar" id="sidebar">
         <h2 style="margin:0 0 15px 0; font-size: 16px; color: #fff;">Control Panel</h2>
         <div id="status">WASM...</div>
-        
         <button id="btnCam" onclick="startCamera()">📸 Start Cam</button>
         <button id="btnBase" onclick="setBaseline()" disabled>🎯 Lock Target</button>
         <button id="btnRecord" class="btn-green" onclick="toggleRecording()" disabled>🔴 Record</button>
-        
         <button class="btn-gray" onclick="openProfileModal()" style="margin-top: 15px;">👤 Profile Set</button>
         <button class="btn-gray" onclick="openSettingsModal()" style="margin-bottom: 5px;">⚙️ Settings</button>
     </div>
 
     <div class="ad-sidebar" id="adSidebar">
         <div class="ad-label">Sponsors</div>
-        <a href="https://www.caliber3range.com/" target="_blank" class="ad-banner">
-            <img src="https://www.caliber3range.com/StaticFiles/Products/0506202416103845.jpg" alt="Caliber 3 Gear">
-        </a>
-        <a href="https://www.meprolight.com/" target="_blank" class="ad-banner" style="background: #fff; display: flex; align-items: center; justify-content: center; padding: 5px;">
-            <img src="https://www.meprolight.com/wp-content/uploads/2025/09/mepro-mpo-pro-f-enclosed-reflex-sight.png" alt="Meprolight Optic">
-        </a>
-        <a href="https://holosun.com/products/reflex-sight/eps/eps-carry-green-mrs.html" target="_blank" class="ad-banner" style="background: #fff; display: flex; align-items: center; justify-content: center; padding: 5px;">
-            <img src="https://image.primaryarms.com/production/SSP%20Applications/NetSuite%20Inc.%20-%20SCA%20Mont%20Blanc/Development/img/EPS-CARRY-RD-6_01.jpg?resizeid=7&resizeh=1100&resizew=1100" alt="Holosun EPS Carry">
-        </a>
-        <a href="https://holosun.com/" target="_blank" class="ad-banner" style="background: #fff; display: flex; align-items: center; justify-content: center; padding: 5px;">
-            <img src="https://image.primaryarms.com/production/SSP%20Applications/NetSuite%20Inc.%20-%20SCA%20Mont%20Blanc/Development/img/HE507C-GR-X2-ACSS_00.jpg?resizeid=7&resizeh=1100&resizew=1100" alt="Holosun 507C ACSS">
-        </a>
-        <a href="https://www.brownells.com/" target="_blank" class="ad-banner" style="background: #fff; display: flex; align-items: center; justify-content: center; padding: 5px;">
-            <img src="https://www.brownells.com/cdn-cgi/image/width=178,format=auto,fit=crop/globalassets/10006/23/430114603_1w.jpg" alt="Brownells Gear">
-        </a>
+        <a href="https://www.caliber3range.com/" target="_blank" class="ad-banner"><img src="https://www.caliber3range.com/StaticFiles/Products/0506202416103845.jpg" alt="Caliber 3 Gear"></a>
+        <a href="https://www.meprolight.com/" target="_blank" class="ad-banner" style="background: #fff; display: flex; align-items: center; justify-content: center; padding: 5px;"><img src="https://www.meprolight.com/wp-content/uploads/2025/09/mepro-mpo-pro-f-enclosed-reflex-sight.png" alt="Meprolight Optic"></a>
+        <a href="https://holosun.com/products/reflex-sight/eps/eps-carry-green-mrs.html" target="_blank" class="ad-banner" style="background: #fff; display: flex; align-items: center; justify-content: center; padding: 5px;"><img src="https://image.primaryarms.com/production/SSP%20Applications/NetSuite%20Inc.%20-%20SCA%20Mont%20Blanc/Development/img/EPS-CARRY-RD-6_01.jpg?resizeid=7&resizeh=1100&resizew=1100" alt="Holosun EPS Carry"></a>
     </div>
 
     <div id="settingsModal" class="modal">
-        <div class="modal-content" style="max-height: 90vh; overflow-y: auto; width: 90%; max-width: 480px;">
+        <div class="modal-content">
             <h2 style="margin:0 0 10px 0; font-size: 16px; border-bottom: 1px solid #333; padding-bottom: 5px; color: #fff;">System Settings</h2>
-            
-            <h3 style="font-size: 11px; color: #00aaff; margin: 15px 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">🔦 Hardware & Illumination</h3>
-            <div class="form-group">
-                <label>Short Range Flashlight</label>
-                <select id="setShortLight">
-                    <option value="auto" selected>Auto-On at Startup</option>
-                    <option value="button">On Physical Button Press</option>
-                    <option value="off">Disabled</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Long Range Flashlight</label>
-                <select id="setLongLight">
-                    <option value="button" selected>On Physical Button Press</option>
-                    <option value="auto">Auto-On at Startup</option>
-                    <option value="off">Disabled</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Laser Dot</label>
-                <select id="setLaser">
-                    <option value="button" selected>On Physical Button Press</option>
-                    <option value="auto">Auto-On at Startup</option>
-                    <option value="off">Disabled</option>
-                </select>
-            </div>
-
-            <h3 style="font-size: 11px; color: #00aaff; margin: 15px 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">📹 Media & Streaming</h3>
-            <div class="form-group">
-                <label>Video Recorder</label>
-                <select id="setVideo">
-                    <option value="timestamp" selected>Record with Time Stamp</option>
-                    <option value="notime">Record (No Time Stamp)</option>
-                    <option value="off">Disabled</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Live Stream</label>
-                <select id="setStream">
-                    <option value="off" selected>Off</option>
-                    <option value="on">Auto-Start</option>
-                </select>
-            </div>
-
             <div style="display:flex; gap:10px; margin-top: 20px;">
-                <button class="btn-green" onclick="saveSettings()" style="margin:0; flex: 2;">💾 Save Settings</button>
+                <button class="btn-green" onclick="closeSettingsModal()" style="margin:0; flex: 2;">💾 Save Settings</button>
                 <button class="btn-gray" onclick="closeSettingsModal()" style="margin:0; flex: 1;">Cancel</button>
             </div>
         </div>
     </div>
 
     <div id="profileModal" class="modal">
-        <div class="modal-content" style="max-height: 90vh; overflow-y: auto; width: 90%; max-width: 480px;">
+        <div class="modal-content">
             <h2 style="margin:0 0 10px 0; font-size: 16px; border-bottom: 1px solid #333; padding-bottom: 5px; color: #fff;">Shooter Diagnostic Profile</h2>
-            
-            <h3 style="font-size: 11px; color: #00aaff; margin: 15px 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">⚙️ Firearm Setup</h3>
-            <div class="form-group">
-                <label>Firearm Make/Model</label>
-                <select id="firearmInput">
-                    <optgroup label="Glock"><option>Glock 17</option><option>Glock 19</option><option>Glock 19X</option><option>Glock 26</option><option>Glock 34</option><option>Glock 43X</option><option>Glock 45</option><option>Glock 47</option></optgroup>
-                    <optgroup label="Sig Sauer"><option>Sig P320</option><option>Sig P365</option><option>Sig P365XL</option><option>Sig P365 XMACRO</option><option>Sig P226</option><option>Sig P229</option></optgroup>
-                    <optgroup label="Smith & Wesson"><option>S&W M&P 9 M2.0</option><option>S&W Shield Plus</option><option>S&W SD9 VE</option></optgroup>
-                    <optgroup label="CZ"><option>CZ 75 B</option><option>CZ P-10 C</option><option>CZ Shadow 2</option><option>CZ P-07</option></optgroup>
-                    <optgroup label="Beretta"><option>Beretta 92FS</option><option>Beretta M9A4</option><option>Beretta APX A1</option></optgroup>
-                    <optgroup label="HK & Walther"><option>HK VP9</option><option>HK P30</option><option>Walther PDP</option><option>Walther PPQ</option></optgroup>
-                    <optgroup label="Springfield & 1911"><option>Springfield Hellcat</option><option>Springfield Echelon</option><option>Staccato P</option><option>Staccato C2</option></optgroup>
-                    <optgroup label="Canik"><option>Canik TP9SFx</option><option>Canik Mete SFT</option></optgroup>
-                    <option>Other / Not Listed</option>
-                </select>
-            </div>
-            <div class="form-grid">
-                <div class="form-group"><label>Caliber</label><select id="propCaliber"><option>9mm</option><option>.380 ACP</option><option>.45 ACP</option><option>.40 S&W</option><option>10mm</option><option>.22 LR</option><option>Other</option></select></div>
-                <div class="form-group"><label>Optic / Sights</label><select id="propSights"><option>Iron Sights</option><option>Red Dot (MRDS)</option><option>Laser</option></select></div>
-            </div>
-
-            <h3 style="font-size: 11px; color: #00aaff; margin: 15px 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">🎯 Training Profile</h3>
-            <div class="form-grid">
-                <div class="form-group"><label>Primary Purpose</label><select id="propPurpose"><option>Self-Defense / CCW</option><option>Duty (LEO/Mil)</option><option>Competition</option><option>Recreational / Plinking</option></select></div>
-                <div class="form-group"><label>Experience Level</label><select id="propExp"><option>Novice</option><option>Intermediate</option><option>Advanced</option><option>Expert</option></select></div>
-                <div class="form-group"><label>Live-Fire Frequency</label><select id="propFreq"><option>Weekly</option><option>Monthly</option><option>Few times a year</option><option>Rarely</option></select></div>
-                <div class="form-group"><label>Dry-Fire Frequency</label><select id="propDryFreq"><option>Daily</option><option>Weekly</option><option>Monthly</option><option>Rarely</option></select></div>
-            </div>
-
-            <h3 style="font-size: 11px; color: #00aaff; margin: 15px 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">🦾 Biomechanics & Form</h3>
-            <div class="form-grid">
-                <div class="form-group"><label>Hand Dominance</label><select id="propHand"><option>Right</option><option>Left</option></select></div>
-                <div class="form-group"><label>Eye Dominance</label><select id="propEye"><option>Right</option><option>Left</option><option>Cross-Dominant</option></select></div>
-                <div class="form-group"><label>Primary Stance</label><select id="propStance"><option>Isosceles</option><option>Weaver</option><option>Chapman / Modified</option></select></div>
-                <div class="form-group"><label>Grip Style</label><select id="propGrip"><option>Thumbs Forward</option><option>Crossed Thumbs</option><option>Teacup</option></select></div>
-            </div>
-            <div class="form-group">
-                <label>Physical Limitations</label>
-                <select id="propLimits"><option>None</option><option>Astigmatism (Visual)</option><option>Arthritis / Weak Grip</option><option>Prior Hand/Wrist Injury</option></select>
-            </div>
-
-            <h3 style="font-size: 11px; color: #00aaff; margin: 15px 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">👤 Physical Metrics</h3>
-            <div class="form-grid">
-                <div class="form-group"><label>Age</label><input type="number" id="propAge" placeholder="e.g., 30"></div>
-                <div class="form-group"><label>Gender</label><select id="propGender"><option>Male</option><option>Female</option></select></div>
-                <div class="form-group"><label>Height (cm)</label><input type="number" id="propHeight" placeholder="e.g., 180"></div>
-                <div class="form-group"><label>Weight (kg)</label><input type="number" id="propWeight" placeholder="e.g., 85"></div>
-            </div>
-
             <div style="display:flex; gap:10px; margin-top: 20px;">
-                <button class="btn-green" onclick="saveProfile()" style="margin:0; flex: 2;">💾 Save Profile</button>
+                <button class="btn-green" onclick="closeProfileModal()" style="margin:0; flex: 2;">💾 Save Profile</button>
                 <button class="btn-gray" onclick="closeProfileModal()" style="margin:0; flex: 1;">Cancel</button>
             </div>
         </div>
     </div>
 
     <div id="mistakeModal" class="modal">
-        <div class="modal-content" style="text-align: center; max-height: 90vh; overflow-y: auto;">
+        <div class="modal-content" style="text-align: center;">
             <h2 id="mistakeTitle" style="color: #00aaff; font-size: 20px; border-bottom: none; margin-bottom: 5px;">Mistake Title</h2>
             <div id="mistakeProb" style="font-size: 12px; color: #ffaa00; margin-bottom: 15px; font-weight: bold;">Confidence Score: -- pts</div>
             
             <div style="text-align: left; background: #1a1a1a; padding: 12px; border-radius: 8px; border-left: 4px solid #00aaff; margin-bottom: 15px;">
-                <p id="mistakeDesc" style="font-size: 13px; color: #ddd; line-height: 1.5; margin: 0 0 10px 0;">
-                    Detailed description goes here.
-                </p>
+                <p id="mistakeDesc" style="font-size: 13px; color: #ddd; line-height: 1.5; margin: 0 0 10px 0;">Detailed description goes here.</p>
                 
-                <div class="diagram-container">
-                    <img id="mistakeDiagram" class="tech-diagram" src="" alt="Kinematic Diagram">
+                <div class="diagram-container" id="mistakeDiagramContainer">
+                    <svg viewBox="0 0 200 120" width="100%" height="100%" style="filter: drop-shadow(0 0 8px rgba(0, 170, 255, 0.4));">
+                        <path d="M40,30 L160,30 L160,55 L120,55 L100,110 L60,110 L80,55 L40,55 Z" fill="none" stroke="#0056b3" stroke-width="4" stroke-linejoin="round"/>
+                        <path d="M120,55 Q130,80 100,75 Q95,65 100,55" fill="none" stroke="#0056b3" stroke-width="2"/>
+                        <line x1="160" y1="42" x2="150" y2="42" stroke="#00aaff" stroke-width="4"/>
+                        
+                        <g id="diag-pitch" style="display:none;" stroke="#ff3b30" fill="none" stroke-width="3">
+                            <path d="M 175,10 A 30 30 0 0 1 175,75" />
+                            <polygon points="170,5 185,10 170,15" fill="#ff3b30" stroke="none"/>
+                            <polygon points="170,70 185,75 170,80" fill="#ff3b30" stroke="none"/>
+                            <text x="135" y="15" fill="#ff3b30" font-size="10" stroke="none" font-family="monospace">PITCH (UP/DOWN)</text>
+                        </g>
+
+                        <g id="diag-yaw" style="display:none;" stroke="#00ffcc" fill="none" stroke-width="3">
+                            <ellipse cx="160" cy="42" rx="15" ry="30" stroke-dasharray="4" />
+                            <path d="M 145,10 L 175,10" />
+                            <polygon points="140,10 150,5 150,15" fill="#00ffcc" stroke="none"/>
+                            <polygon points="180,10 170,5 170,15" fill="#00ffcc" stroke="none"/>
+                            <text x="135" y="85" fill="#00ffcc" font-size="10" stroke="none" font-family="monospace">YAW (LEFT/RIGHT)</text>
+                        </g>
+
+                        <g id="diag-roll" style="display:none;" stroke="#aa00ff" fill="none" stroke-width="3">
+                            <ellipse cx="100" cy="42" rx="70" ry="25" stroke-dasharray="5 5" />
+                            <path d="M 30,42 A 70 25 0 0 1 170,42" />
+                            <polygon points="175,42 165,37 165,47" fill="#aa00ff" stroke="none"/>
+                            <polygon points="25,42 35,37 35,47" fill="#aa00ff" stroke="none"/>
+                            <text x="75" y="90" fill="#aa00ff" font-size="10" stroke="none" font-family="monospace">ROLL (SIDE TILT)</text>
+                        </g>
+                    </svg>
                 </div>
                 
                 <h4 style="font-size: 10px; color: #888; margin: 10px 0 4px 0; text-transform: uppercase;">Expected Kinematics:</h4>
@@ -537,38 +374,27 @@
     <canvas id="calcCanvas" width="640" height="480" style="display:none;"></canvas>
 
 <script>
-    // --- BOOT SEQUENCE LOGIC ---
     let appHasStarted = false;
-
     function launchTrickyTech() {
         if (appHasStarted) return;
         appHasStarted = true;
-
         if (document.documentElement.requestFullscreen) {
             document.documentElement.requestFullscreen().then(() => {
-                if (screen.orientation && screen.orientation.lock) {
-                    screen.orientation.lock('landscape').catch(e => console.log('Orientation lock failed:', e));
-                }
+                if (screen.orientation && screen.orientation.lock) { screen.orientation.lock('landscape').catch(e => console.log(e)); }
             }).catch(e => console.log(e));
         }
-
         document.getElementById('tapText').style.display = 'none';
         let rotatePrompt = document.getElementById('rotatePrompt');
         if(rotatePrompt) rotatePrompt.style.display = 'none';
-        
         document.getElementById('logoContainer').style.display = 'flex';
-
         setTimeout(() => {
             const intro = document.getElementById('introScreen');
             intro.classList.add('intro-fade-out');
-            setTimeout(() => { 
-                intro.style.display = 'none'; 
-                resizeCanvases();
-            }, 500);
+            setTimeout(() => { intro.style.display = 'none'; resizeCanvases(); }, 500);
         }, 3000);
     }
 
-    // --- GLOBAL KINEMATIC DEFINITIONS ---
+    // --- KINEMATIC DEFINITIONS (Used only in Modal now) ---
     const moveDetails = {
         "Up": { icon: "⬆️", type: "Trans", axis: "Z-Axis" },
         "Down": { icon: "⬇️", type: "Trans", axis: "Z-Axis" },
@@ -579,106 +405,47 @@
         "Yaw": { icon: "↪️", type: "Rot", axis: "Y-Axis" }
     };
 
-    // --- GLOBAL STATE ---
-    let userProfile = {};
-    let appSettings = { shortLight: 'auto', longLight: 'button', laser: 'button', video: 'timestamp', stream: 'off' };
-    
-    // --- UI/UX INTERACTIONS ---
-    function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('sidebarOverlay');
-        document.getElementById('adSidebar').classList.remove('open');
-        if (sidebar.classList.contains('open')) {
-            sidebar.classList.remove('open');
-            overlay.style.display = 'none';
-        } else {
-            sidebar.classList.add('open');
-            overlay.style.display = 'block';
-        }
-    }
-
-    function toggleAdSidebar() {
-        const adSidebar = document.getElementById('adSidebar');
-        const overlay = document.getElementById('sidebarOverlay');
-        document.getElementById('sidebar').classList.remove('open'); 
-        if (adSidebar.classList.contains('open')) {
-            adSidebar.classList.remove('open');
-            overlay.style.display = 'none';
-        } else {
-            adSidebar.classList.add('open');
-            overlay.style.display = 'block';
-        }
-    }
-
-    function closeAllSidebars() {
-        document.getElementById('sidebar').classList.remove('open');
-        document.getElementById('adSidebar').classList.remove('open');
-        document.getElementById('sidebarOverlay').style.display = 'none';
-    }
-
-    function toggleFullScreen() {
-        if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(e => console.log(e)); } 
-        else { if (document.exitFullscreen) document.exitFullscreen(); }
-    }
-
+    function toggleSidebar() { const sb = document.getElementById('sidebar'); const ov = document.getElementById('sidebarOverlay'); document.getElementById('adSidebar').classList.remove('open'); if (sb.classList.contains('open')) { sb.classList.remove('open'); ov.style.display = 'none'; } else { sb.classList.add('open'); ov.style.display = 'block'; } }
+    function toggleAdSidebar() { const asb = document.getElementById('adSidebar'); const ov = document.getElementById('sidebarOverlay'); document.getElementById('sidebar').classList.remove('open'); if (asb.classList.contains('open')) { asb.classList.remove('open'); ov.style.display = 'none'; } else { asb.classList.add('open'); ov.style.display = 'block'; } }
+    function closeAllSidebars() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('adSidebar').classList.remove('open'); document.getElementById('sidebarOverlay').style.display = 'none'; }
+    function toggleFullScreen() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(e => console.log(e)); } else { if (document.exitFullscreen) document.exitFullscreen(); } }
     function openProfileModal() { document.getElementById('profileModal').style.display = 'flex'; closeAllSidebars(); }
     function closeProfileModal() { document.getElementById('profileModal').style.display = 'none'; }
     function openSettingsModal() { document.getElementById('settingsModal').style.display = 'flex'; closeAllSidebars(); }
     function closeSettingsModal() { document.getElementById('settingsModal').style.display = 'none'; }
 
-    function saveProfile() { 
-        userProfile = {
-            firearm: document.getElementById('firearmInput').value,
-            caliber: document.getElementById('propCaliber').value,
-            sights: document.getElementById('propSights').value,
-            purpose: document.getElementById('propPurpose').value,
-            experience: document.getElementById('propExp').value,
-            liveFreq: document.getElementById('propFreq').value,
-            dryFreq: document.getElementById('propDryFreq').value,
-            handDominance: document.getElementById('propHand').value,
-            eyeDominance: document.getElementById('propEye').value,
-            stance: document.getElementById('propStance').value,
-            grip: document.getElementById('propGrip').value,
-            limitations: document.getElementById('propLimits').value,
-            age: document.getElementById('propAge').value,
-            gender: document.getElementById('propGender').value,
-            height: document.getElementById('propHeight').value,
-            weight: document.getElementById('propWeight').value
-        };
-        closeProfileModal(); 
-    }
-
-    function saveSettings() {
-        appSettings = {
-            shortLight: document.getElementById('setShortLight').value,
-            longLight: document.getElementById('setLongLight').value,
-            laser: document.getElementById('setLaser').value,
-            video: document.getElementById('setVideo').value,
-            stream: document.getElementById('setStream').value
-        };
-        closeSettingsModal();
-    }
-
-    // --- UPDATED MISTAKE MODAL LOGIC WITH DIAGRAM INJECTION ---
+    // --- UNIVERSAL MISTAKE MODAL (Handles All Columns) ---
     function openMistakeModal(name, score) {
         let mistake = mistakeDB.find(m => m.name === name);
-        if (!mistake) return;
         
+        // Handle clicking on a "Good" result (e.g. Clean Break)
+        if (!mistake) {
+            document.getElementById('mistakeTitle').innerText = name;
+            document.getElementById('mistakeTitle').style.color = "#00ffcc";
+            document.getElementById('mistakeProb').innerText = `Status: Optimal`;
+            document.getElementById('mistakeDesc').innerText = "This element of your shot execution was performed correctly. No kinematic deviations detected.";
+            document.getElementById('mistakeDiagramContainer').style.display = 'none';
+            document.getElementById('modalExpectedMoves').innerHTML = '<span style="color:#00ffcc; font-size:12px; font-weight:bold;">✅ Perfect Execution</span>';
+            document.getElementById('mistakeLink').style.display = 'none';
+            document.getElementById('mistakeModal').style.display = 'flex';
+            return;
+        }
+        
+        // Handle actual mistakes
         document.getElementById('mistakeTitle').innerText = mistake.name;
+        document.getElementById('mistakeTitle').style.color = "#00aaff";
         document.getElementById('mistakeProb').innerText = `Engine Confidence Score: ${score} pts`;
         document.getElementById('mistakeDesc').innerText = mistake.desc;
+        document.getElementById('mistakeLink').style.display = 'block';
         document.getElementById('mistakeLink').href = mistake.url;
 
-        // Set the dynamic diagram URL to render with the CSS Blue Technological Filter
-        let diagramEl = document.getElementById('mistakeDiagram');
-        if(mistake.diagram) {
-            diagramEl.src = mistake.diagram;
-            diagramEl.parentElement.style.display = 'block';
-        } else {
-            diagramEl.parentElement.style.display = 'none';
-        }
+        // Toggle Custom Pistol SVG Axes
+        document.getElementById('mistakeDiagramContainer').style.display = 'block';
+        document.getElementById('diag-pitch').style.display = (mistake.axis === 'pitch' || mistake.axis === 'all') ? 'block' : 'none';
+        document.getElementById('diag-yaw').style.display = (mistake.axis === 'yaw' || mistake.axis === 'all') ? 'block' : 'none';
+        document.getElementById('diag-roll').style.display = (mistake.axis === 'roll' || mistake.axis === 'all') ? 'block' : 'none';
 
-        // Build the rich visual tags for the expected movements
+        // Build expected moves tags
         let expectedHtml = mistake.tele.map(moveName => {
             let details = moveDetails[moveName] || { icon: "⏺️", type: "Unk", axis: "Unk" };
             return `
@@ -688,7 +455,6 @@
             `;
         }).join('');
 
-        // Also display the expected visual impacts (where the hole appears on target)
         if(mistake.vis && mistake.vis.length > 0) {
              expectedHtml += mistake.vis.map(v => `
                  <span style="background: rgba(0, 170, 255, 0.15); padding: 4px 6px; border-radius: 4px; font-size: 9px; border: 1px dashed #00aaff; color: #fff;">
@@ -702,239 +468,115 @@
     }
 
     function closeMistakeModal() { document.getElementById('mistakeModal').style.display = 'none'; }
+    function shareResults() { alert(`Smart Target Session Score: ${overallScore}/100\nShots Tracked: ${persistentShots.length}`); }
 
-    function shareResults() {
-        let text = `Smart Target Session Score: ${overallScore}/100\nShots Tracked: ${persistentShots.length}`;
-        if (navigator.share) { navigator.share({ title: 'Shooting Diagnostic', text: text }).catch(console.error); } 
-        else { alert("Share function: \n" + text); }
-    }
+    let isRecording = false, isAnalyzing = false, stream, mediaRecorder, recordedChunks = [], sensorLog = [], recordingStartTime = 0;
+    let telemetrySpikes = [], currentTilt = { pitch: 0, roll: 0, yaw: 0 }, orb = null, matcher = null, refKP = null, refDesc = null, refGray = null;
+    let cropSize = 0, targetRadius = 0, persistentShots = [], candidates = [], blacklist = [], targetCenter = { x: 0, y: 0 }, overallScore = 100, lastComputedH = null;
+    const PROXIMITY = 15.0, REQ_FRAMES = 4, GYRO_SHOT_THRESHOLD = 80, ACCEL_SHOT_THRESHOLD = 15, GYRO_MOVE_THRESH = 20.0, ACCEL_MOVE_THRESH = 3.5;    
 
-    // --- STATE VARIABLES ---
-    let isRecording = false, isAnalyzing = false;
-    let stream, mediaRecorder, recordedChunks = [], sensorLog = [], recordingStartTime = 0;
-    let telemetrySpikes = [];
-    let currentTilt = { pitch: 0, roll: 0, yaw: 0 };
-    let orb = null, matcher = null, refKP = null, refDesc = null, refGray = null;
-    let cropSize = 0, targetRadius = 0, persistentShots = [], candidates = [], blacklist = [];
-    let targetCenter = { x: 0, y: 0 }; 
-    let overallScore = 100;
-    let lastComputedH = null;
-    const PROXIMITY = 15.0, REQ_FRAMES = 4;
-    const GYRO_SHOT_THRESHOLD = 80;
-    const ACCEL_SHOT_THRESHOLD = 15;  
-    const GYRO_MOVE_THRESH = 20.0;
-    const ACCEL_MOVE_THRESH = 3.5;    
-
-    // --- MISTAKE DB UPDATED WITH DIAGRAM URLs ---
+    // --- MISTAKE DB (Now defines which custom SVG axis to highlight) ---
     const mistakeDB = [
-        { name: "Jerking the trigger", tele: ["Down", "Pitch", "Left"], vis: ["Low", "Left"], diagram: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Pitch_Axis.svg", desc: "Rapidly slapping or yanking the trigger instead of applying a smooth, continuous rearward press. This physically pulls the muzzle down and to the side right as the shot breaks.", url: "https://www.youtube.com/results?search_query=pistol+jerking+the+trigger+correction" },
-        { name: "Anticipating Recoil", tele: ["Down", "Pitch"], vis: ["Low"], diagram: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Pitch_Axis.svg", desc: "Your brain knows an explosion is about to happen, so your hands subconsciously push forward and down against the gun at the last microsecond to fight the expected recoil.", url: "https://www.youtube.com/results?search_query=pistol+anticipating+recoil+flinch" },
-        { name: "Heeling", tele: ["Up", "Pitch"], vis: ["High"], diagram: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Pitch_Axis.svg", desc: "Applying abrupt, uneven pressure with the heel of the hand (bottom of the palm) while firing, causing the muzzle to pitch upwards.", url: "https://www.youtube.com/results?search_query=pistol+heeling+mistake" },
-        { name: "Too much trigger finger", tele: ["Right", "Yaw"], vis: ["Right"], diagram: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Yaw_Axis_Corrected.svg", desc: "Placing the trigger too far deep into the finger crease. When you pull, the mechanics of your finger curl pull the entire gun horizontally towards your firing hand.", url: "https://www.youtube.com/results?search_query=pistol+too+much+trigger+finger" },
-        { name: "Too little trigger finger", tele: ["Left", "Yaw"], vis: ["Left"], diagram: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Yaw_Axis_Corrected.svg", desc: "Using only the extreme tip of your finger on the trigger. When pressing, you end up pushing the trigger sideways away from your firing hand rather than straight back.", url: "https://www.youtube.com/results?search_query=pistol+too+little+trigger+finger" },
-        { name: "Thumb Pressure", tele: ["Right", "Roll"], vis: ["Right"], diagram: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Roll_Axis.svg", desc: "Pushing against the frame of the gun with either your firing thumb or support thumb, which acts like a lever and shifts your sights horizontally.", url: "https://www.youtube.com/results?search_query=pistol+thumb+pressure+grip" },
-        { name: "Breaking wrist up", tele: ["Up", "Pitch"], vis: ["High"], diagram: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Pitch_Axis.svg", desc: "Allowing the wrist to unlock and bend upward slightly during the trigger pull, usually due to a lack of forearm tension.", url: "https://www.youtube.com/results?search_query=pistol+breaking+wrist+up" },
-        { name: "Breaking wrist down", tele: ["Down", "Pitch"], vis: ["Low"], diagram: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Pitch_Axis.svg", desc: "Unlocking the wrist downward right as the shot fires. Often tied to recoil anticipation.", url: "https://www.youtube.com/results?search_query=pistol+breaking+wrist+down" },
-        { name: "Milking the grip", tele: ["Down", "Roll", "Left"], vis: ["Low", "Left"], diagram: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Roll_Axis.svg", desc: "Contracting the lower fingers of the firing hand at the exact same time your index finger pulls the trigger. Your hand acts like a fist closing.", url: "https://www.youtube.com/results?search_query=pistol+milking+the+grip" },
-        { name: "Riding the recoil", tele: ["Up", "Pitch"], vis: ["High"], diagram: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Pitch_Axis.svg", desc: "Letting the gun completely dictate the recoil path upward without maintaining the necessary isometric grip tension to snap it back to center.", url: "https://www.youtube.com/results?search_query=pistol+riding+recoil" },
-        { name: "Breathing offset", tele: ["Up", "Down"], vis: ["High", "Low"], diagram: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/6DOF_en.jpg/800px-6DOF_en.jpg", desc: "Firing at inconsistent points during your breathing cycle. The expansion of your chest naturally raises and lowers your arms.", url: "https://www.youtube.com/results?search_query=pistol+breathing+control" },
-        { name: "Grip Tension", tele: ["Left", "Right", "Roll"], vis: ["Left", "Right"], diagram: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Roll_Axis.svg", desc: "Unequal or shifting pressure between the firing hand and support hand, creating a 'tug of war' that pulls the gun off target laterally.", url: "https://www.youtube.com/results?search_query=pistol+grip+tension" }
+        { name: "Jerking the trigger", tele: ["Down", "Pitch", "Left"], vis: ["Low", "Left"], axis: "pitch", desc: "Rapidly slapping or yanking the trigger instead of applying a smooth, continuous rearward press. This physically pulls the muzzle down and to the side right as the shot breaks.", url: "https://www.youtube.com/results?search_query=pistol+jerking+the+trigger+correction" },
+        { name: "Anticipating Recoil", tele: ["Down", "Pitch"], vis: ["Low"], axis: "pitch", desc: "Your brain knows an explosion is about to happen, so your hands subconsciously push forward and down against the gun at the last microsecond to fight the expected recoil.", url: "https://www.youtube.com/results?search_query=pistol+anticipating+recoil+flinch" },
+        { name: "Heeling", tele: ["Up", "Pitch"], vis: ["High"], axis: "pitch", desc: "Applying abrupt, uneven pressure with the heel of the hand (bottom of the palm) while firing, causing the muzzle to pitch upwards.", url: "https://www.youtube.com/results?search_query=pistol+heeling+mistake" },
+        { name: "Too much trigger finger", tele: ["Right", "Yaw"], vis: ["Right"], axis: "yaw", desc: "Placing the trigger too far deep into the finger crease. When you pull, the mechanics of your finger curl pull the entire gun horizontally towards your firing hand.", url: "https://www.youtube.com/results?search_query=pistol+too+much+trigger+finger" },
+        { name: "Too little trigger finger", tele: ["Left", "Yaw"], vis: ["Left"], axis: "yaw", desc: "Using only the extreme tip of your finger on the trigger. When pressing, you end up pushing the trigger sideways away from your firing hand rather than straight back.", url: "https://www.youtube.com/results?search_query=pistol+too+little+trigger+finger" },
+        { name: "Thumb Pressure", tele: ["Right", "Roll"], vis: ["Right"], axis: "roll", desc: "Pushing against the frame of the gun with either your firing thumb or support thumb, which acts like a lever and shifts your sights horizontally.", url: "https://www.youtube.com/results?search_query=pistol+thumb+pressure+grip" },
+        { name: "Breaking wrist up", tele: ["Up", "Pitch"], vis: ["High"], axis: "pitch", desc: "Allowing the wrist to unlock and bend upward slightly during the trigger pull, usually due to a lack of forearm tension.", url: "https://www.youtube.com/results?search_query=pistol+breaking+wrist+up" },
+        { name: "Breaking wrist down", tele: ["Down", "Pitch"], vis: ["Low"], axis: "pitch", desc: "Unlocking the wrist downward right as the shot fires. Often tied to recoil anticipation.", url: "https://www.youtube.com/results?search_query=pistol+breaking+wrist+down" },
+        { name: "Milking the grip", tele: ["Down", "Roll", "Left"], vis: ["Low", "Left"], axis: "roll", desc: "Contracting the lower fingers of the firing hand at the exact same time your index finger pulls the trigger. Your hand acts like a fist closing.", url: "https://www.youtube.com/results?search_query=pistol+milking+the+grip" },
+        { name: "Riding the recoil", tele: ["Up", "Pitch"], vis: ["High"], axis: "pitch", desc: "Letting the gun completely dictate the recoil path upward without maintaining the necessary isometric grip tension to snap it back to center.", url: "https://www.youtube.com/results?search_query=pistol+riding+recoil" },
+        { name: "Breathing offset", tele: ["Up", "Down"], vis: ["High", "Low"], axis: "all", desc: "Firing at inconsistent points during your breathing cycle. The expansion of your chest naturally raises and lowers your arms.", url: "https://www.youtube.com/results?search_query=pistol+breathing+control" },
+        { name: "Grip Tension", tele: ["Left", "Right", "Roll"], vis: ["Left", "Right"], axis: "roll", desc: "Unequal or shifting pressure between the firing hand and support hand, creating a 'tug of war' that pulls the gun off target laterally.", url: "https://www.youtube.com/results?search_query=pistol+grip+tension" }
     ];
 
-    function onOpenCvReady() { 
-        document.getElementById('status').innerText = "System Ready"; 
-        document.getElementById('status').style.color = "#00ff00";
-        document.getElementById('status').style.borderColor = "rgba(0, 255, 0, 0.3)";
-        document.getElementById('status').style.background = "rgba(0, 255, 0, 0.1)";
-        resizeCanvases();
-        window.addEventListener('resize', resizeCanvases);
-    }
-
-    function resizeCanvases() {
-        let gyro = document.getElementById('gyroGraph');
-        if (gyro.parentElement) {
-            gyro.width = gyro.parentElement.clientWidth;
-            gyro.height = gyro.parentElement.clientHeight;
-            if (sensorLog && sensorLog.length > 0) {
-                drawRecordedGraph();
-                applyPlaybackProgress(false); 
-            }
-        }
-    }
-
+    function onOpenCvReady() { document.getElementById('status').innerText = "System Ready"; document.getElementById('status').style.color = "#00ff00"; document.getElementById('status').style.borderColor = "rgba(0, 255, 0, 0.3)"; document.getElementById('status').style.background = "rgba(0, 255, 0, 0.1)"; resizeCanvases(); window.addEventListener('resize', resizeCanvases); }
+    function resizeCanvases() { let gyro = document.getElementById('gyroGraph'); if (gyro.parentElement) { gyro.width = gyro.parentElement.clientWidth; gyro.height = gyro.parentElement.clientHeight; if (sensorLog && sensorLog.length > 0) { drawRecordedGraph(); applyPlaybackProgress(false); } } }
+    
     const viewer = document.getElementById('weaponViewer');
-    if (viewer) {
-        viewer.autoplay = false; viewer.loop = false;
-        viewer.addEventListener('loop', () => { viewer.pause(); });
-        viewer.addEventListener('finished', () => { viewer.pause(); });
-    }
-
-    function trigger3DAnimation() {
-        if(viewer) {
-            viewer.currentTime = 0;
-            setTimeout(() => { viewer.play(); }, 10);
-        }
-    }
+    if (viewer) { viewer.autoplay = false; viewer.loop = false; viewer.addEventListener('loop', () => { viewer.pause(); }); viewer.addEventListener('finished', () => { viewer.pause(); }); }
+    function trigger3DAnimation() { if(viewer) { viewer.currentTime = 0; setTimeout(() => { viewer.play(); }, 10); } }
 
     function startCamera() {
-        navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" }, width: { ideal: 640 }, height: { ideal: 480 } } })
-        .then(s => { 
-            stream = s;
-            const videoEl = document.getElementById('webcam');
-            videoEl.srcObject = stream; 
-            
-            videoEl.play().then(() => {
-                document.getElementById('btnBase').disabled = false; 
-                document.getElementById('btnCam').style.display = 'none';
-                let stat = document.getElementById('status');
-                stat.innerText = "Center & Lock"; stat.style.color = "#00aaff";
-                closeAllSidebars(); 
-                resizeCanvases();
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" }, width: { ideal: 640 }, height: { ideal: 480 } } }).then(s => { 
+            stream = s; document.getElementById('webcam').srcObject = stream; 
+            document.getElementById('webcam').play().then(() => {
+                document.getElementById('btnBase').disabled = false; document.getElementById('btnCam').style.display = 'none';
+                let stat = document.getElementById('status'); stat.innerText = "Center & Lock"; stat.style.color = "#00aaff"; closeAllSidebars(); resizeCanvases();
             });
-            
-            window.addEventListener('deviceorientation', (e) => {
-                currentTilt.pitch = e.beta || 0; currentTilt.roll = e.gamma || 0; currentTilt.yaw = e.alpha || 0;
-            });
+            window.addEventListener('deviceorientation', (e) => { currentTilt.pitch = e.beta || 0; currentTilt.roll = e.gamma || 0; currentTilt.yaw = e.alpha || 0; });
             window.addEventListener('devicemotion', handleMotion);
         });
     }
 
     function handleMotion(event) {
         let ax = event.accelerationIncludingGravity?.x || 0; let ay = event.accelerationIncludingGravity?.y || 0; let az = event.accelerationIncludingGravity?.z || 0;
-        let gx = event.rotationRate?.alpha || 0;
-        let gy = event.rotationRate?.beta || 0; let gz = event.rotationRate?.gamma || 0;
+        let gx = event.rotationRate?.alpha || 0; let gy = event.rotationRate?.beta || 0; let gz = event.rotationRate?.gamma || 0;
         if (viewer && !isAnalyzing) { viewer.orientation = `${currentTilt.pitch}deg ${currentTilt.yaw}deg ${currentTilt.roll}deg`; }
-
-        if (isRecording && (Math.abs(gx) > GYRO_SHOT_THRESHOLD || Math.abs(gy) > GYRO_SHOT_THRESHOLD)) {
-            let now = performance.now();
-            if (viewer && (!viewer.lastSpike || now - viewer.lastSpike > 500)) {
-                viewer.lastSpike = now;
-                trigger3DAnimation();
-            }
-        }
-
+        if (isRecording && (Math.abs(gx) > GYRO_SHOT_THRESHOLD || Math.abs(gy) > GYRO_SHOT_THRESHOLD)) { let now = performance.now(); if (viewer && (!viewer.lastSpike || now - viewer.lastSpike > 500)) { viewer.lastSpike = now; trigger3DAnimation(); } }
         if (!isRecording) return;
-        sensorLog.push({
-            time_ms: performance.now() - recordingStartTime,
-            ax: ax, ay: ay, az: az, gx: gx, gy: gy, gz: gz, tp: currentTilt.pitch, tr: currentTilt.roll, ty: currentTilt.yaw
-        });
+        sensorLog.push({ time_ms: performance.now() - recordingStartTime, ax: ax, ay: ay, az: az, gx: gx, gy: gy, gz: gz, tp: currentTilt.pitch, tr: currentTilt.roll, ty: currentTilt.yaw });
     }
 
     function toggleRecording() {
         let btn = document.getElementById('btnRecord');
         if (!isRecording) {
-            recordedChunks = []; sensorLog = [];
-            persistentShots = []; telemetrySpikes = []; overallScore = 100; lastComputedH = null;
-            document.getElementById('shotList').innerHTML = ""; document.getElementById('kinematicList').innerHTML = "";
-            document.getElementById('deductionList').innerHTML = "";
-            document.getElementById('sessionScoreText').innerText = "100";
-            document.getElementById('overlayCanvas').getContext('2d').clearRect(0,0,640,480);
+            recordedChunks = []; sensorLog = []; persistentShots = []; telemetrySpikes = []; overallScore = 100; lastComputedH = null;
+            document.getElementById('shotList').innerHTML = ""; document.getElementById('kinematicList').innerHTML = ""; document.getElementById('deductionList').innerHTML = "";
+            document.getElementById('sessionScoreText').innerText = "100"; document.getElementById('overlayCanvas').getContext('2d').clearRect(0,0,640,480);
+            document.getElementById('playbackControls').style.display = 'none'; document.getElementById('wheelPlaceholder').style.display = 'block';
             
-            document.getElementById('playbackControls').style.display = 'none';
-            document.getElementById('wheelPlaceholder').style.display = 'block';
-            
-            let options = { mimeType: 'video/webm; codecs=vp8' };
-            if (!MediaRecorder.isTypeSupported('video/webm; codecs=vp8')) options = { mimeType: 'video/mp4' };
-            
+            let options = { mimeType: 'video/webm; codecs=vp8' }; if (!MediaRecorder.isTypeSupported('video/webm; codecs=vp8')) options = { mimeType: 'video/mp4' };
             mediaRecorder = new MediaRecorder(stream, options);
             mediaRecorder.ondataavailable = function(e) { if (e.data.size > 0) recordedChunks.push(e.data); };
             mediaRecorder.onstop = triggerAnalysisPhase;
-            
-            recordingStartTime = performance.now();
-            isRecording = true; mediaRecorder.start();
-            btn.innerText = "Stop Record"; btn.classList.add("recording");
-            closeAllSidebars(); 
+            recordingStartTime = performance.now(); isRecording = true; mediaRecorder.start();
+            btn.innerText = "Stop Record"; btn.classList.add("recording"); closeAllSidebars(); 
         } else {
-            isRecording = false;
-            mediaRecorder.stop();
-            btn.style.display = 'none'; 
+            isRecording = false; mediaRecorder.stop(); btn.style.display = 'none'; 
         }
     }
 
     function triggerAnalysisPhase() {
-        let stat = document.getElementById('status');
-        stat.innerText = "⚙️ ANALYZING..."; stat.style.color = "#ffaa00";
-
-        drawRecordedGraph(); 
-        processEntireSensorLog();
-        
-        let videoElement = document.getElementById('webcam');
-        videoElement.srcObject = null;
+        let stat = document.getElementById('status'); stat.innerText = "⚙️ ANALYZING..."; stat.style.color = "#ffaa00";
+        drawRecordedGraph(); processEntireSensorLog();
+        let videoElement = document.getElementById('webcam'); videoElement.srcObject = null;
         videoElement.src = URL.createObjectURL(new Blob(recordedChunks, { type: mediaRecorder.mimeType }));
-        
         videoElement.onplay = () => { isAnalyzing = true; trackingLoopPlayback(); };
         videoElement.onended = () => {
-            isAnalyzing = false;
-            stat.innerText = "✅ COMPLETE"; stat.style.color = "#00ff00";
-            
-            document.getElementById('wheelPlaceholder').style.display = 'none';
-            document.getElementById('playbackControls').style.display = 'flex';
+            isAnalyzing = false; stat.innerText = "✅ COMPLETE"; stat.style.color = "#00ff00";
+            document.getElementById('wheelPlaceholder').style.display = 'none'; document.getElementById('playbackControls').style.display = 'flex';
             document.getElementById('sessionScoreText').innerText = overallScore > 0 ? overallScore : 0;
-
             playbackProgress = 1.0; visualAngle = 720; applyPlaybackProgress();
-            
-            let btn = document.getElementById('btnRecord');
-            btn.style.display = 'block'; btn.classList.remove("btn-green", "recording"); btn.classList.add("btn-gray");
-            btn.innerText = "Reset System"; 
-            btn.onclick = () => location.reload(); 
+            let btn = document.getElementById('btnRecord'); btn.style.display = 'block'; btn.classList.remove("btn-green", "recording"); btn.classList.add("btn-gray"); btn.innerText = "Reset System"; btn.onclick = () => location.reload(); 
         };
         videoElement.play();
     }
 
-    function grab() {
-        let cvs = document.getElementById('calcCanvas');
-        let video = document.getElementById('webcam');
-        cvs.getContext('2d').drawImage(video, 0,0, 640, 480); return cv.imread(cvs);
-    }
+    function grab() { let cvs = document.getElementById('calcCanvas'); let video = document.getElementById('webcam'); cvs.getContext('2d').drawImage(video, 0,0, 640, 480); return cv.imread(cvs); }
 
     function setBaseline() {
-        if(!orb) { orb = new cv.ORB(1500);
-            matcher = new cv.BFMatcher(cv.NORM_HAMMING, true); refKP = new cv.KeyPointVector(); refDesc = new cv.Mat();
-        }
-        let frame = grab();
-        let gray = new cv.Mat(), thresh = new cv.Mat();
-        cv.cvtColor(frame, gray, cv.COLOR_RGBA2GRAY); cv.adaptiveThreshold(gray, thresh, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY_INV, 15, 5);
+        if(!orb) { orb = new cv.ORB(1500); matcher = new cv.BFMatcher(cv.NORM_HAMMING, true); refKP = new cv.KeyPointVector(); refDesc = new cv.Mat(); }
+        let frame = grab(); let gray = new cv.Mat(), thresh = new cv.Mat(); cv.cvtColor(frame, gray, cv.COLOR_RGBA2GRAY); cv.adaptiveThreshold(gray, thresh, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY_INV, 15, 5);
         let contours = new cv.MatVector(), hierarchy = new cv.Mat(); cv.findContours(thresh, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
         let best = null, maxA = 0;
-        for(let i=0; i<contours.size(); i++) {
-            let a = cv.contourArea(contours.get(i));
-            if(a > 2000 && a > maxA) { maxA = a; best = cv.minEnclosingCircle(contours.get(i)); }
-        }
-        if(!best) { alert("Center target better!");
-            frame.delete(); gray.delete(); thresh.delete(); return; }
-
-        targetRadius = Math.round(best.radius);
-        cropSize = targetRadius * 2 + 60;
-        let rx = Math.max(0, best.center.x - cropSize/2), ry = Math.max(0, best.center.y - cropSize/2);
-        targetCenter = { x: best.center.x - rx, y: best.center.y - ry };
+        for(let i=0; i<contours.size(); i++) { let a = cv.contourArea(contours.get(i)); if(a > 2000 && a > maxA) { maxA = a; best = cv.minEnclosingCircle(contours.get(i)); } }
+        if(!best) { alert("Center target better!"); frame.delete(); gray.delete(); thresh.delete(); return; }
+        targetRadius = Math.round(best.radius); cropSize = targetRadius * 2 + 60;
+        let rx = Math.max(0, best.center.x - cropSize/2), ry = Math.max(0, best.center.y - cropSize/2); targetCenter = { x: best.center.x - rx, y: best.center.y - ry };
         let roi = frame.roi(new cv.Rect(rx, ry, Math.min(frame.cols-rx, cropSize), Math.min(frame.rows-ry, cropSize)));
-        if(refGray) refGray.delete();
-        refGray = new cv.Mat(); cv.cvtColor(roi, refGray, cv.COLOR_RGBA2GRAY);
-        let mask = cv.Mat.zeros(roi.rows, roi.cols, cv.CV_8UC1);
-        cv.circle(mask, new cv.Point(targetCenter.x, targetCenter.y), targetRadius - 10, new cv.Scalar(255), -1);
+        if(refGray) refGray.delete(); refGray = new cv.Mat(); cv.cvtColor(roi, refGray, cv.COLOR_RGBA2GRAY);
+        let mask = cv.Mat.zeros(roi.rows, roi.cols, cv.CV_8UC1); cv.circle(mask, new cv.Point(targetCenter.x, targetCenter.y), targetRadius - 10, new cv.Scalar(255), -1);
         orb.detectAndCompute(refGray, mask, refKP, refDesc);
         document.getElementById('btnRecord').disabled = false; document.getElementById('btnBase').style.display = 'none';
-        
-        let stat = document.getElementById('status'); stat.innerText = "Target Locked"; stat.style.color = "#ff3b30";
-        closeAllSidebars(); frame.delete(); gray.delete();
-        thresh.delete(); contours.delete(); hierarchy.delete(); mask.delete(); roi.delete();
+        let stat = document.getElementById('status'); stat.innerText = "Target Locked"; stat.style.color = "#ff3b30"; closeAllSidebars(); frame.delete(); gray.delete(); thresh.delete(); contours.delete(); hierarchy.delete(); mask.delete(); roi.delete();
     }
 
     function drawRecordedGraph() {
-        const canvas = document.getElementById('gyroGraph');
-        if (!canvas || sensorLog.length === 0) return;
-        const ctx = canvas.getContext('2d'); ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const step = canvas.width / sensorLog.length;
-
-        function plotLine(key, color) {
-            ctx.strokeStyle = color;
-            ctx.lineWidth = 1.5; ctx.beginPath();
-            for (let i = 0; i < sensorLog.length; i++) {
-                let y = (canvas.height / 2) - ((sensorLog[i][key] || 0) * 0.5);
-                if (i === 0) ctx.moveTo(i * step, y); else ctx.lineTo(i * step, y);
-            }
-            ctx.stroke();
-        }
+        const canvas = document.getElementById('gyroGraph'); if (!canvas || sensorLog.length === 0) return;
+        const ctx = canvas.getContext('2d'); ctx.clearRect(0, 0, canvas.width, canvas.height); const step = canvas.width / sensorLog.length;
+        function plotLine(key, color) { ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.beginPath(); for (let i = 0; i < sensorLog.length; i++) { let y = (canvas.height / 2) - ((sensorLog[i][key] || 0) * 0.5); if (i === 0) ctx.moveTo(i * step, y); else ctx.lineTo(i * step, y); } ctx.stroke(); }
         plotLine('gx', '#ff4444'); plotLine('gy', '#44ff44'); plotLine('gz', '#4444ff');
     }
 
@@ -944,8 +586,7 @@
             let s = sensorLog[i];
             if (s.time_ms - lastSpikeTime > 500) {
                 if (Math.abs(s.gx) > GYRO_SHOT_THRESHOLD || Math.abs(s.gy) > GYRO_SHOT_THRESHOLD || Math.abs(s.ax) > ACCEL_SHOT_THRESHOLD) {
-                    lastSpikeTime = s.time_ms;
-                    shotCounter++;
+                    lastSpikeTime = s.time_ms; shotCounter++;
                     let preShotSlice = sensorLog.filter(data => data.time_ms >= s.time_ms - 400 && data.time_ms <= s.time_ms);
                     diagnoseKinematics(preShotSlice, shotCounter);
                 }
@@ -955,28 +596,17 @@
 
     function diagnoseKinematics(dataSlice, shotId) {
         let shotTime = dataSlice[dataSlice.length - 1].time_ms; 
-        let movesTimeline = []; 
         let movesArray = [];    
 
-        const addMove = (name, type, axis, icon, relTime) => {
-            if (!movesArray.includes(name)) {
-                movesArray.push(name);
-                movesTimeline.push({ name, type, axis, icon, relTime });
-            }
-        };
-
         for (let s of dataSlice) {
-            let relTime = Math.round(s.time_ms - shotTime); 
             let adjustedZ = (s.az || 0) - 9.8;
-
-            if (s.ax > ACCEL_MOVE_THRESH) addMove("Right", moveDetails["Right"].type, moveDetails["Right"].axis, moveDetails["Right"].icon, relTime);
-            if (s.ax < -ACCEL_MOVE_THRESH) addMove("Left", moveDetails["Left"].type, moveDetails["Left"].axis, moveDetails["Left"].icon, relTime);
-            if (adjustedZ > ACCEL_MOVE_THRESH) addMove("Up", moveDetails["Up"].type, moveDetails["Up"].axis, moveDetails["Up"].icon, relTime);
-            if (adjustedZ < -ACCEL_MOVE_THRESH) addMove("Down", moveDetails["Down"].type, moveDetails["Down"].axis, moveDetails["Down"].icon, relTime);
-
-            if (Math.abs(s.gx) > GYRO_MOVE_THRESH) addMove("Roll", moveDetails["Roll"].type, moveDetails["Roll"].axis, moveDetails["Roll"].icon, relTime);
-            if (Math.abs(s.gy) > GYRO_MOVE_THRESH) addMove("Pitch", moveDetails["Pitch"].type, moveDetails["Pitch"].axis, moveDetails["Pitch"].icon, relTime);
-            if (Math.abs(s.gz) > GYRO_MOVE_THRESH) addMove("Yaw", moveDetails["Yaw"].type, moveDetails["Yaw"].axis, moveDetails["Yaw"].icon, relTime);
+            if (s.ax > ACCEL_MOVE_THRESH && !movesArray.includes("Right")) movesArray.push("Right");
+            if (s.ax < -ACCEL_MOVE_THRESH && !movesArray.includes("Left")) movesArray.push("Left");
+            if (adjustedZ > ACCEL_MOVE_THRESH && !movesArray.includes("Up")) movesArray.push("Up");
+            if (adjustedZ < -ACCEL_MOVE_THRESH && !movesArray.includes("Down")) movesArray.push("Down");
+            if (Math.abs(s.gx) > GYRO_MOVE_THRESH && !movesArray.includes("Roll")) movesArray.push("Roll");
+            if (Math.abs(s.gy) > GYRO_MOVE_THRESH && !movesArray.includes("Pitch")) movesArray.push("Pitch");
+            if (Math.abs(s.gz) > GYRO_MOVE_THRESH && !movesArray.includes("Yaw")) movesArray.push("Yaw");
         }
 
         let eventTime = shotTime;
@@ -984,29 +614,24 @@
 
         let allTeleMatches = [];
         mistakeDB.forEach(m => {
-            let score = 0;
-            m.tele.forEach(pattern => { if (movesArray.includes(pattern)) score += 10; });
+            let score = 0; m.tele.forEach(pattern => { if (movesArray.includes(pattern)) score += 10; });
             if (score > 0) allTeleMatches.push({name: m.name, score: score});
         });
         allTeleMatches.sort((a,b) => b.score - a.score);
         
         let top3Tele = allTeleMatches.slice(0, 3);
         while(top3Tele.length < 3) top3Tele.push({name: "N/A", score: 0});
-        let matchesHtml = top3Tele.map((m, i) => `
-            <div class="mistake"><span style="color:#ddd">${i+1}. ${m.name}</span></div>`).join('');
 
-        let timelineHtml = movesTimeline.map(m => `
-            <div class="timeline-row">
-                <span style="display:flex; align-items:center;">
-                    <span class="timeline-icon">${m.icon}</span>
-                    <span>
-                        <strong style="color:#fff;">${m.name}</strong> 
-                        <span class="timeline-meta">| ${m.type} ${m.axis}</span>
-                    </span>
-                </span>
-                <span class="timeline-time">${m.relTime}ms</span>
-            </div>
-        `).join('');
+        // Clickable Engine Predictions inside the Telemetry Column
+        let matchesHtml = top3Tele.map((m, i) => {
+            if (m.name === "N/A") return `<div class="mistake"><span style="color:#555;">${i+1}. N/A</span></div>`;
+            return `
+            <div class="mistake clickable-mistake" onclick="openMistakeModal('${m.name}', ${m.score})">
+                <span style="color:#fff; flex:1;">${i+1}. ${m.name}</span>
+            </div>`;
+        }).join('');
+
+        let rawMovesText = movesArray.length > 0 ? movesArray.join(', ') : 'Stable Break';
 
         document.getElementById('kinematicList').insertAdjacentHTML('beforeend', `
             <div class="card result-card visible" data-time="${eventTime}" style="border-left-color: #ff3b30;">
@@ -1015,8 +640,8 @@
                     <span style="font-size:7px; color:#666; font-weight:bold;">SHOT PEAK: 0ms</span>
                 </div>
                 
-                <div style="margin: 4px 0;">
-                    ${timelineHtml || '<div style="font-size:8px; color:#888; text-align:center; padding: 4px;">✅ Stable Break (No Deviations)</div>'}
+                <div style="font-size:8px; color:#888; padding: 4px 0;">
+                    Detected: <span style="color:#00ffcc;">${rawMovesText}</span>
                 </div>
                 
                 <hr style="border:0; border-top:1px solid #333; margin: 4px 0;">
@@ -1044,45 +669,34 @@
                         let matSrc = cv.matFromArray(good.length, 1, cv.CV_32FC2, srcP), matDst = cv.matFromArray(good.length, 1, cv.CV_32FC2, dstP);
                         let H = cv.findHomography(matSrc, matDst, cv.RANSAC, 5.0);
                         if(!H.empty()) {
-                            let invH = new cv.Mat();
-                            cv.invert(H, invH, cv.DECOMP_LU);
+                            let invH = new cv.Mat(); cv.invert(H, invH, cv.DECOMP_LU);
                             let warped = new cv.Mat(); cv.warpPerspective(grayLive, warped, invH, new cv.Size(refGray.cols, refGray.rows));
-                            let diff = new cv.Mat(), thresh = new cv.Mat();
-                            cv.absdiff(refGray, warped, diff); cv.threshold(diff, thresh, 50, 255, cv.THRESH_BINARY);
-                            let liveMask = cv.Mat.zeros(refGray.rows, refGray.cols, cv.CV_8UC1);
-                            cv.circle(liveMask, new cv.Point(targetCenter.x, targetCenter.y), targetRadius - 15, new cv.Scalar(255), -1);
+                            let diff = new cv.Mat(), thresh = new cv.Mat(); cv.absdiff(refGray, warped, diff); cv.threshold(diff, thresh, 50, 255, cv.THRESH_BINARY);
+                            let liveMask = cv.Mat.zeros(refGray.rows, refGray.cols, cv.CV_8UC1); cv.circle(liveMask, new cv.Point(targetCenter.x, targetCenter.y), targetRadius - 15, new cv.Scalar(255), -1);
                             let maskedThresh = new cv.Mat(); thresh.copyTo(maskedThresh, liveMask);
-
-                            let contours = new cv.MatVector(), hier = new cv.Mat();
-                            cv.findContours(maskedThresh, contours, hier, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
+                            let contours = new cv.MatVector(), hier = new cv.Mat(); cv.findContours(maskedThresh, contours, hier, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
                             
                             let currentHoles = [];
                             for(let i=0; i<contours.size(); i++) {
                                 let cnt = contours.get(i), area = cv.contourArea(cnt);
                                 if(area > 15 && area < 600) {
-                                    let M = cv.moments(cnt);
-                                    let p = {x: M.m10/M.m00, y: M.m01/M.m00};
+                                    let M = cv.moments(cnt); let p = {x: M.m10/M.m00, y: M.m01/M.m00};
                                     if (Math.hypot(p.x - targetCenter.x, p.y - targetCenter.y) > targetRadius - 15) continue;
                                     if(blacklist.some(b => Math.hypot(b.x-p.x, b.y-p.y) < PROXIMITY)) continue;
-                                    let hull = new cv.Mat(); cv.convexHull(cnt, hull);
-                                    let solidity = area / (cv.contourArea(hull) || 1); hull.delete();
-                                    if(solidity > 0.80) currentHoles.push(p);
-                                    else if(solidity < 0.65) blacklist.push(p);
+                                    let hull = new cv.Mat(); cv.convexHull(cnt, hull); let solidity = area / (cv.contourArea(hull) || 1); hull.delete();
+                                    if(solidity > 0.80) currentHoles.push(p); else if(solidity < 0.65) blacklist.push(p);
                                 }
                             }
                             processShots(currentHoles);
                             if (lastComputedH) lastComputedH.delete();
                             lastComputedH = H.clone();
                             drawOverlay(lastComputedH);
-
                             invH.delete(); warped.delete(); diff.delete(); thresh.delete(); liveMask.delete(); maskedThresh.delete(); contours.delete(); hier.delete(); H.delete();
                         }
-                        matSrc.delete();
-                        matDst.delete();
+                        matSrc.delete(); matDst.delete();
                     }
                 }
-            } catch(e) { console.error(e);
-            } finally { frame.delete(); grayLive.delete(); liveKP.delete(); liveDesc.delete(); matches.delete(); }
+            } catch(e) { console.error(e); } finally { frame.delete(); grayLive.delete(); liveKP.delete(); liveDesc.delete(); matches.delete(); }
         }
         if (isAnalyzing) requestAnimationFrame(trackingLoopPlayback);
     }
@@ -1098,8 +712,12 @@
                     let diag = getDiag131(h.x, h.y);
                     persistentShots.push({id: Date.now(), x:h.x, y:h.y, d: diag});
                     let shotID = persistentShots.length;
+                    
+                    // Vision items are now fully clickable and route to the universal Modal
                     let visHtml = diag.m.map((m, i) => `
-                        <div class="mistake"><span style="color:#ddd">${i+1}. ${m.n}</span></div>`).join('');
+                        <div class="mistake clickable-mistake" onclick="openMistakeModal('${m.n}', 'N/A')">
+                            <span style="color:#ddd; flex:1;">${i+1}. ${m.n}</span>
+                        </div>`).join('');
                     
                     document.getElementById('shotList').insertAdjacentHTML('beforeend', `
                         <div class="card result-card visible" data-time="${vidTimeMs}" style="border-left-color: #00aaff;">
@@ -1107,11 +725,9 @@
                             ${visHtml}
                         </div>
                     `);
+
                     let closestSpike = null, minDiff = 1000;
-                    telemetrySpikes.forEach(spike => {
-                        let diff = Math.abs(spike.time - vidTimeMs);
-                        if (diff < minDiff) { minDiff = diff; closestSpike = spike; }
-                    });
+                    telemetrySpikes.forEach(spike => { let diff = Math.abs(spike.time - vidTimeMs); if (diff < minDiff) { minDiff = diff; closestSpike = spike; } });
                     let tMoves = closestSpike ? closestSpike.moves : [];
                     let scoreDeduction = 0;
                     let scored = mistakeDB.map(m => {
@@ -1123,11 +739,9 @@
                         if (matchVis && matchTele) { tag = "COMB", tagColor = "#aa00ff"; scoreDeduction += 5; }
                         else if (matchVis) { tag = "VIS", tagColor = "#00aaff"; scoreDeduction += 3; }
                         else if (matchTele) { tag = "TEL", tagColor = "#ff3b30"; scoreDeduction += 2; }
-
                         return { name: m.name, score: score, tag: tag, tagColor: tagColor };
                     });
-                    overallScore -= scoreDeduction; 
-                    document.getElementById('sessionScoreText').innerText = overallScore;
+                    overallScore -= scoreDeduction; document.getElementById('sessionScoreText').innerText = overallScore;
                     scored.sort((a,b) => b.score - a.score);
                     
                     let top3 = scored.slice(0, 3);
@@ -1156,40 +770,26 @@
     }
 
     function getDiag131(x, y) {
-        let dx = x - targetCenter.x, dy = targetCenter.y - y;
-        let dist = Math.hypot(dx, dy);
+        let dx = x - targetCenter.x, dy = targetCenter.y - y; let dist = Math.hypot(dx, dy);
         if (dist < 15) return {z:"Center", m:[{n:"Clean Break", p:"Good"}, {n:"Stable Stance", p:"Good"}, {n:"Smooth Trigger", p:"Good"}]};
         let a = Math.atan2(dy, dx) * (180/Math.PI); if(a < 0) a += 360;
-        if(a > 45 && a <= 135) return {z:"High", m:[{n:"Riding Recoil", p:"High"},{n:"Heeling", p:"Med"},{n:"Breathing", p:"Low"}]};
-        if(a > 135 && a <= 225) return {z:"Left", m:[{n:"Trigger Depth", p:"High"},{n:"Grip Tension", p:"Med"},{n:"Wrist Roll", p:"Low"}]};
-        if(a > 225 && a <= 315) return {z:"Low", m:[{n:"Trigger Jerking", p:"High"},{n:"Anticipation", p:"Med"},{n:"Flinching", p:"Low"}]};
-        return {z:"Right", m:[{n:"Finger Tip Pressure", p:"High"},{n:"Thumb Pressure", p:"Med"},{n:"Cheek Weld", p:"Low"}]};
+        if(a > 45 && a <= 135) return {z:"High", m:[{n:"Riding the recoil", p:"High"},{n:"Heeling", p:"Med"},{n:"Breathing offset", p:"Low"}]};
+        if(a > 135 && a <= 225) return {z:"Left", m:[{n:"Too little trigger finger", p:"High"},{n:"Grip Tension", p:"Med"},{n:"Milking the grip", p:"Low"}]};
+        if(a > 225 && a <= 315) return {z:"Low", m:[{n:"Jerking the trigger", p:"High"},{n:"Anticipating Recoil", p:"Med"},{n:"Breaking wrist down", p:"Low"}]};
+        return {z:"Right", m:[{n:"Too much trigger finger", p:"High"},{n:"Thumb Pressure", p:"Med"}]};
     }
 
-    function updateOverlayScale() {
-        if (lastComputedH && !lastComputedH.isDeleted()) { drawOverlay(lastComputedH); }
-    }
+    function updateOverlayScale() { if (lastComputedH && !lastComputedH.isDeleted()) { drawOverlay(lastComputedH); } }
 
     function drawOverlay(H) {
-        let cvs = document.getElementById('overlayCanvas');
-        let ctx = cvs.getContext('2d');
-        ctx.clearRect(0,0, 640, 480);
-
-        let scale = parseFloat(document.getElementById('overlaySlider').value);
-        if (scale === 0) return;
+        let cvs = document.getElementById('overlayCanvas'); let ctx = cvs.getContext('2d'); ctx.clearRect(0,0, 640, 480);
+        let scale = parseFloat(document.getElementById('overlaySlider').value); if (scale === 0) return;
         persistentShots.forEach((s, idx) => {
             let p = cv.matFromArray(3, 1, cv.CV_64F, [s.x, s.y, 1.0]);
             let dP = new cv.Mat(); cv.gemm(H, p, 1, new cv.Mat(), 0, dP);
             let x = dP.data64F[0]/dP.data64F[2], y = dP.data64F[1]/dP.data64F[2];
-            
-            ctx.beginPath(); ctx.arc(x,y, 10 * scale, 0, 6.28); 
-            ctx.fillStyle="rgba(0,255,0,0.7)"; ctx.fill();
-            ctx.strokeStyle="white"; ctx.stroke();
-            
-            ctx.fillStyle="white"; 
-            ctx.font= (11 * scale) + "px sans-serif"; 
-            ctx.fillText("#"+(idx+1), x + (14 * scale), y + (4 * scale));
-            
+            ctx.beginPath(); ctx.arc(x,y, 10 * scale, 0, 6.28); ctx.fillStyle="rgba(0,255,0,0.7)"; ctx.fill(); ctx.strokeStyle="white"; ctx.stroke();
+            ctx.fillStyle="white"; ctx.font= (11 * scale) + "px sans-serif"; ctx.fillText("#"+(idx+1), x + (14 * scale), y + (4 * scale));
             p.delete(); dP.delete();
         });
     }
@@ -1199,87 +799,54 @@
     
     wheel.addEventListener('pointerdown', (e) => {
         if (!isAnalyzing && sensorLog.length === 0 || e.target === playBtn) return;
-        isDraggingWheel = true; pausePlayback();
-        wheel.setPointerCapture(e.pointerId);
-        let rect = wheel.getBoundingClientRect();
-        lastAngle = Math.atan2(e.clientY - (rect.top + rect.height/2), e.clientX - (rect.left + rect.width/2));
+        isDraggingWheel = true; pausePlayback(); wheel.setPointerCapture(e.pointerId);
+        let rect = wheel.getBoundingClientRect(); lastAngle = Math.atan2(e.clientY - (rect.top + rect.height/2), e.clientX - (rect.left + rect.width/2));
     });
     
     wheel.addEventListener('pointermove', (e) => {
         if (!isDraggingWheel) return;
-        let rect = wheel.getBoundingClientRect();
-        let angle = Math.atan2(e.clientY - (rect.top + rect.height/2), e.clientX - (rect.left + rect.width/2));
-        let delta = angle - lastAngle;
-        if (delta > Math.PI) delta -= 2 * Math.PI; if (delta < -Math.PI) delta += 2 * Math.PI;
-        lastAngle = angle;
-        
-        visualAngle += delta * (180 / Math.PI);
-        playbackProgress += delta / (Math.PI * 4); 
+        let rect = wheel.getBoundingClientRect(); let angle = Math.atan2(e.clientY - (rect.top + rect.height/2), e.clientX - (rect.left + rect.width/2));
+        let delta = angle - lastAngle; if (delta > Math.PI) delta -= 2 * Math.PI; if (delta < -Math.PI) delta += 2 * Math.PI;
+        lastAngle = angle; visualAngle += delta * (180 / Math.PI); playbackProgress += delta / (Math.PI * 4); 
         if (playbackProgress < 0) playbackProgress = 0; if (playbackProgress > 1) playbackProgress = 1;
         applyPlaybackProgress();
     });
     
-    wheel.addEventListener('pointerup', () => isDraggingWheel = false);
-    wheel.addEventListener('pointercancel', () => isDraggingWheel = false);
-    
+    wheel.addEventListener('pointerup', () => isDraggingWheel = false); wheel.addEventListener('pointercancel', () => isDraggingWheel = false);
     playBtn.onclick = function() { if (isAutoPlaying) pausePlayback(); else startPlayback(); };
     
     function startPlayback() {
-        if(sensorLog.length === 0) return;
-        isAutoPlaying = true;
-        playBtn.innerText = "⏸";
+        if(sensorLog.length === 0) return; isAutoPlaying = true; playBtn.innerText = "⏸";
         if (playbackProgress >= 1) playbackProgress = 0; 
-        let videoElement = document.getElementById('webcam');
-        if (videoElement.duration) videoElement.play();
+        let videoElement = document.getElementById('webcam'); if (videoElement.duration) videoElement.play();
         playInterval = setInterval(() => {
-            if (videoElement.duration) { playbackProgress = videoElement.currentTime / videoElement.duration; } 
-            else { playbackProgress += 0.01; }
-            visualAngle = playbackProgress * 720;
-            applyPlaybackProgress(true);
+            if (videoElement.duration) { playbackProgress = videoElement.currentTime / videoElement.duration; } else { playbackProgress += 0.01; }
+            visualAngle = playbackProgress * 720; applyPlaybackProgress(true);
             if (playbackProgress >= 1) pausePlayback();
         }, 30);
     }
 
-    function pausePlayback() {
-        isAutoPlaying = false; playBtn.innerText = "▶";
-        clearInterval(playInterval); document.getElementById('webcam').pause();
-    }
+    function pausePlayback() { isAutoPlaying = false; playBtn.innerText = "▶"; clearInterval(playInterval); document.getElementById('webcam').pause(); }
 
     function applyPlaybackProgress(isAuto = false) {
-        if (sensorLog.length === 0) return;
-        spinner.style.transform = `rotate(${visualAngle}deg)`;
-        let idx = Math.floor(playbackProgress * (sensorLog.length - 1));
-        let s = sensorLog[idx]; if (!s) return;
-        let videoElement = document.getElementById('webcam');
-        if (!isAuto && videoElement.duration) { videoElement.currentTime = playbackProgress * videoElement.duration; }
+        if (sensorLog.length === 0) return; spinner.style.transform = `rotate(${visualAngle}deg)`;
+        let idx = Math.floor(playbackProgress * (sensorLog.length - 1)); let s = sensorLog[idx]; if (!s) return;
+        let videoElement = document.getElementById('webcam'); if (!isAuto && videoElement.duration) { videoElement.currentTime = playbackProgress * videoElement.duration; }
 
         if (viewer) {
             viewer.orientation = `${s.tp}deg ${s.ty}deg ${s.tr}deg`;
             if (Math.abs(s.gx) > GYRO_SHOT_THRESHOLD || Math.abs(s.gy) > GYRO_SHOT_THRESHOLD) {
-                let now = performance.now();
-                if (!viewer.lastSpike || now - viewer.lastSpike > 500) {
-                    viewer.lastSpike = now;
-                    trigger3DAnimation();
-                }
+                let now = performance.now(); if (!viewer.lastSpike || now - viewer.lastSpike > 500) { viewer.lastSpike = now; trigger3DAnimation(); }
             }
         }
 
         let canvas = document.getElementById('gyroGraph'), playhead = document.getElementById('graphPlayhead');
-        if (canvas && playhead) {
-            playhead.style.display = 'block';
-            playhead.style.left = (playbackProgress * canvas.width) + 'px';
-        }
+        if (canvas && playhead) { playhead.style.display = 'block'; playhead.style.left = (playbackProgress * canvas.width) + 'px'; }
 
-        let currentMs = s.time_ms;
-        let isAtEnd = playbackProgress >= 0.99;
-        
+        let currentMs = s.time_ms; let isAtEnd = playbackProgress >= 0.99;
         document.querySelectorAll('.result-card').forEach(c => {
             let cardTime = parseFloat(c.getAttribute('data-time'));
-            if (isAtEnd || cardTime <= currentMs) {
-                c.classList.add('visible'); 
-            } else {
-                c.classList.remove('visible');
-            }
+            if (isAtEnd || cardTime <= currentMs) c.classList.add('visible'); else c.classList.remove('visible');
         });
         document.getElementById('timeLabel').innerText = (currentMs / 1000).toFixed(2) + "s";
     }
