@@ -177,13 +177,6 @@
         .form-group label { font-size: 10px; color: #aaa; margin-bottom: 4px; }
         .form-group input, .form-group select { background: #1a1a1a; border: 1px solid #333; color: white; padding: 8px; border-radius: 6px; font-size: 12px; width: 100%; box-sizing: border-box; outline: none; }
         optgroup { color: #aaa; font-style: normal; font-weight: bold; background: #222; }
-
-        /* --- INLINE PISTOL KINEMATICS DIAGRAM --- */
-        .diagram-container {
-            text-align: center; margin: 15px 0; background: #08111a; 
-            padding: 15px 10px; border-radius: 8px; border: 1px solid #00aaff;
-            box-shadow: inset 0 0 20px rgba(0, 170, 255, 0.15);
-        }
         
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
@@ -329,37 +322,6 @@
             <div style="text-align: left; background: #1a1a1a; padding: 12px; border-radius: 8px; border-left: 4px solid #00aaff; margin-bottom: 15px;">
                 <p id="mistakeDesc" style="font-size: 13px; color: #ddd; line-height: 1.5; margin: 0 0 10px 0;">Detailed description goes here.</p>
                 
-                <div class="diagram-container" id="mistakeDiagramContainer">
-                    <svg viewBox="0 0 200 120" width="100%" height="100%" style="filter: drop-shadow(0 0 8px rgba(0, 170, 255, 0.4));">
-                        <path d="M40,30 L160,30 L160,55 L120,55 L100,110 L60,110 L80,55 L40,55 Z" fill="none" stroke="#0056b3" stroke-width="4" stroke-linejoin="round"/>
-                        <path d="M120,55 Q130,80 100,75 Q95,65 100,55" fill="none" stroke="#0056b3" stroke-width="2"/>
-                        <line x1="160" y1="42" x2="150" y2="42" stroke="#00aaff" stroke-width="4"/>
-                        
-                        <g id="diag-pitch" style="display:none;" stroke="#ff3b30" fill="none" stroke-width="3">
-                            <path d="M 175,10 A 30 30 0 0 1 175,75" />
-                            <polygon points="170,5 185,10 170,15" fill="#ff3b30" stroke="none"/>
-                            <polygon points="170,70 185,75 170,80" fill="#ff3b30" stroke="none"/>
-                            <text x="135" y="15" fill="#ff3b30" font-size="10" stroke="none" font-family="monospace">PITCH (UP/DOWN)</text>
-                        </g>
-
-                        <g id="diag-yaw" style="display:none;" stroke="#00ffcc" fill="none" stroke-width="3">
-                            <ellipse cx="160" cy="42" rx="15" ry="30" stroke-dasharray="4" />
-                            <path d="M 145,10 L 175,10" />
-                            <polygon points="140,10 150,5 150,15" fill="#00ffcc" stroke="none"/>
-                            <polygon points="180,10 170,5 170,15" fill="#00ffcc" stroke="none"/>
-                            <text x="135" y="85" fill="#00ffcc" font-size="10" stroke="none" font-family="monospace">YAW (LEFT/RIGHT)</text>
-                        </g>
-
-                        <g id="diag-roll" style="display:none;" stroke="#aa00ff" fill="none" stroke-width="3">
-                            <ellipse cx="100" cy="42" rx="70" ry="25" stroke-dasharray="5 5" />
-                            <path d="M 30,42 A 70 25 0 0 1 170,42" />
-                            <polygon points="175,42 165,37 165,47" fill="#aa00ff" stroke="none"/>
-                            <polygon points="25,42 35,37 35,47" fill="#aa00ff" stroke="none"/>
-                            <text x="75" y="90" fill="#aa00ff" font-size="10" stroke="none" font-family="monospace">ROLL (SIDE TILT)</text>
-                        </g>
-                    </svg>
-                </div>
-                
                 <h4 style="font-size: 10px; color: #888; margin: 10px 0 4px 0; text-transform: uppercase;">Expected Kinematics:</h4>
                 <div id="modalExpectedMoves" style="display:flex; flex-wrap:wrap; gap:4px;"></div>
             </div>
@@ -424,7 +386,6 @@
             document.getElementById('mistakeTitle').style.color = "#00ffcc";
             document.getElementById('mistakeProb').innerText = `Status: Optimal`;
             document.getElementById('mistakeDesc').innerText = "This element of your shot execution was performed correctly. No kinematic deviations detected.";
-            document.getElementById('mistakeDiagramContainer').style.display = 'none';
             document.getElementById('modalExpectedMoves').innerHTML = '<span style="color:#00ffcc; font-size:12px; font-weight:bold;">✅ Perfect Execution</span>';
             document.getElementById('mistakeLink').style.display = 'none';
             document.getElementById('mistakeModal').style.display = 'flex';
@@ -438,12 +399,6 @@
         document.getElementById('mistakeDesc').innerText = mistake.desc;
         document.getElementById('mistakeLink').style.display = 'block';
         document.getElementById('mistakeLink').href = mistake.url;
-
-        // Toggle Custom Pistol SVG Axes
-        document.getElementById('mistakeDiagramContainer').style.display = 'block';
-        document.getElementById('diag-pitch').style.display = (mistake.axis === 'pitch' || mistake.axis === 'all') ? 'block' : 'none';
-        document.getElementById('diag-yaw').style.display = (mistake.axis === 'yaw' || mistake.axis === 'all') ? 'block' : 'none';
-        document.getElementById('diag-roll').style.display = (mistake.axis === 'roll' || mistake.axis === 'all') ? 'block' : 'none';
 
         // Build expected moves tags
         let expectedHtml = mistake.tele.map(moveName => {
@@ -475,20 +430,20 @@
     let cropSize = 0, targetRadius = 0, persistentShots = [], candidates = [], blacklist = [], targetCenter = { x: 0, y: 0 }, overallScore = 100, lastComputedH = null;
     const PROXIMITY = 15.0, REQ_FRAMES = 4, GYRO_SHOT_THRESHOLD = 80, ACCEL_SHOT_THRESHOLD = 15, GYRO_MOVE_THRESH = 20.0, ACCEL_MOVE_THRESH = 3.5;    
 
-    // --- MISTAKE DB (Now defines which custom SVG axis to highlight) ---
+    // --- MISTAKE DB ---
     const mistakeDB = [
-        { name: "Jerking the trigger", tele: ["Down", "Pitch", "Left"], vis: ["Low", "Left"], axis: "pitch", desc: "Rapidly slapping or yanking the trigger instead of applying a smooth, continuous rearward press. This physically pulls the muzzle down and to the side right as the shot breaks.", url: "https://www.youtube.com/results?search_query=pistol+jerking+the+trigger+correction" },
-        { name: "Anticipating Recoil", tele: ["Down", "Pitch"], vis: ["Low"], axis: "pitch", desc: "Your brain knows an explosion is about to happen, so your hands subconsciously push forward and down against the gun at the last microsecond to fight the expected recoil.", url: "https://www.youtube.com/results?search_query=pistol+anticipating+recoil+flinch" },
-        { name: "Heeling", tele: ["Up", "Pitch"], vis: ["High"], axis: "pitch", desc: "Applying abrupt, uneven pressure with the heel of the hand (bottom of the palm) while firing, causing the muzzle to pitch upwards.", url: "https://www.youtube.com/results?search_query=pistol+heeling+mistake" },
-        { name: "Too much trigger finger", tele: ["Right", "Yaw"], vis: ["Right"], axis: "yaw", desc: "Placing the trigger too far deep into the finger crease. When you pull, the mechanics of your finger curl pull the entire gun horizontally towards your firing hand.", url: "https://www.youtube.com/results?search_query=pistol+too+much+trigger+finger" },
-        { name: "Too little trigger finger", tele: ["Left", "Yaw"], vis: ["Left"], axis: "yaw", desc: "Using only the extreme tip of your finger on the trigger. When pressing, you end up pushing the trigger sideways away from your firing hand rather than straight back.", url: "https://www.youtube.com/results?search_query=pistol+too+little+trigger+finger" },
-        { name: "Thumb Pressure", tele: ["Right", "Roll"], vis: ["Right"], axis: "roll", desc: "Pushing against the frame of the gun with either your firing thumb or support thumb, which acts like a lever and shifts your sights horizontally.", url: "https://www.youtube.com/results?search_query=pistol+thumb+pressure+grip" },
-        { name: "Breaking wrist up", tele: ["Up", "Pitch"], vis: ["High"], axis: "pitch", desc: "Allowing the wrist to unlock and bend upward slightly during the trigger pull, usually due to a lack of forearm tension.", url: "https://www.youtube.com/results?search_query=pistol+breaking+wrist+up" },
-        { name: "Breaking wrist down", tele: ["Down", "Pitch"], vis: ["Low"], axis: "pitch", desc: "Unlocking the wrist downward right as the shot fires. Often tied to recoil anticipation.", url: "https://www.youtube.com/results?search_query=pistol+breaking+wrist+down" },
-        { name: "Milking the grip", tele: ["Down", "Roll", "Left"], vis: ["Low", "Left"], axis: "roll", desc: "Contracting the lower fingers of the firing hand at the exact same time your index finger pulls the trigger. Your hand acts like a fist closing.", url: "https://www.youtube.com/results?search_query=pistol+milking+the+grip" },
-        { name: "Riding the recoil", tele: ["Up", "Pitch"], vis: ["High"], axis: "pitch", desc: "Letting the gun completely dictate the recoil path upward without maintaining the necessary isometric grip tension to snap it back to center.", url: "https://www.youtube.com/results?search_query=pistol+riding+recoil" },
-        { name: "Breathing offset", tele: ["Up", "Down"], vis: ["High", "Low"], axis: "all", desc: "Firing at inconsistent points during your breathing cycle. The expansion of your chest naturally raises and lowers your arms.", url: "https://www.youtube.com/results?search_query=pistol+breathing+control" },
-        { name: "Grip Tension", tele: ["Left", "Right", "Roll"], vis: ["Left", "Right"], axis: "roll", desc: "Unequal or shifting pressure between the firing hand and support hand, creating a 'tug of war' that pulls the gun off target laterally.", url: "https://www.youtube.com/results?search_query=pistol+grip+tension" }
+        { name: "Jerking the trigger", tele: ["Down", "Pitch", "Left"], vis: ["Low", "Left"], desc: "Rapidly slapping or yanking the trigger instead of applying a smooth, continuous rearward press. This physically pulls the muzzle down and to the side right as the shot breaks.", url: "https://www.youtube.com/results?search_query=pistol+jerking+the+trigger+correction" },
+        { name: "Anticipating Recoil", tele: ["Down", "Pitch"], vis: ["Low"], desc: "Your brain knows an explosion is about to happen, so your hands subconsciously push forward and down against the gun at the last microsecond to fight the expected recoil.", url: "https://www.youtube.com/results?search_query=pistol+anticipating+recoil+flinch" },
+        { name: "Heeling", tele: ["Up", "Pitch"], vis: ["High"], desc: "Applying abrupt, uneven pressure with the heel of the hand (bottom of the palm) while firing, causing the muzzle to pitch upwards.", url: "https://www.youtube.com/results?search_query=pistol+heeling+mistake" },
+        { name: "Too much trigger finger", tele: ["Right", "Yaw"], vis: ["Right"], desc: "Placing the trigger too far deep into the finger crease. When you pull, the mechanics of your finger curl pull the entire gun horizontally towards your firing hand.", url: "https://www.youtube.com/results?search_query=pistol+too+much+trigger+finger" },
+        { name: "Too little trigger finger", tele: ["Left", "Yaw"], vis: ["Left"], desc: "Using only the extreme tip of your finger on the trigger. When pressing, you end up pushing the trigger sideways away from your firing hand rather than straight back.", url: "https://www.youtube.com/results?search_query=pistol+too+little+trigger+finger" },
+        { name: "Thumb Pressure", tele: ["Right", "Roll"], vis: ["Right"], desc: "Pushing against the frame of the gun with either your firing thumb or support thumb, which acts like a lever and shifts your sights horizontally.", url: "https://www.youtube.com/results?search_query=pistol+thumb+pressure+grip" },
+        { name: "Breaking wrist up", tele: ["Up", "Pitch"], vis: ["High"], desc: "Allowing the wrist to unlock and bend upward slightly during the trigger pull, usually due to a lack of forearm tension.", url: "https://www.youtube.com/results?search_query=pistol+breaking+wrist+up" },
+        { name: "Breaking wrist down", tele: ["Down", "Pitch"], vis: ["Low"], desc: "Unlocking the wrist downward right as the shot fires. Often tied to recoil anticipation.", url: "https://www.youtube.com/results?search_query=pistol+breaking+wrist+down" },
+        { name: "Milking the grip", tele: ["Down", "Roll", "Left"], vis: ["Low", "Left"], desc: "Contracting the lower fingers of the firing hand at the exact same time your index finger pulls the trigger. Your hand acts like a fist closing.", url: "https://www.youtube.com/results?search_query=pistol+milking+the+grip" },
+        { name: "Riding the recoil", tele: ["Up", "Pitch"], vis: ["High"], desc: "Letting the gun completely dictate the recoil path upward without maintaining the necessary isometric grip tension to snap it back to center.", url: "https://www.youtube.com/results?search_query=pistol+riding+recoil" },
+        { name: "Breathing offset", tele: ["Up", "Down"], vis: ["High", "Low"], desc: "Firing at inconsistent points during your breathing cycle. The expansion of your chest naturally raises and lowers your arms.", url: "https://www.youtube.com/results?search_query=pistol+breathing+control" },
+        { name: "Grip Tension", tele: ["Left", "Right", "Roll"], vis: ["Left", "Right"], desc: "Unequal or shifting pressure between the firing hand and support hand, creating a 'tug of war' that pulls the gun off target laterally.", url: "https://www.youtube.com/results?search_query=pistol+grip+tension" }
     ];
 
     function onOpenCvReady() { document.getElementById('status').innerText = "System Ready"; document.getElementById('status').style.color = "#00ff00"; document.getElementById('status').style.borderColor = "rgba(0, 255, 0, 0.3)"; document.getElementById('status').style.background = "rgba(0, 255, 0, 0.1)"; resizeCanvases(); window.addEventListener('resize', resizeCanvases); }
