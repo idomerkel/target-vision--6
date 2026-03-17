@@ -52,7 +52,6 @@
             100% { transform: rotate(-90deg); }
         }
 
-        /* Hide the rotate prompt if the phone is already sideways! */
         @media (orientation: landscape) {
             .rotate-prompt { display: none; }
         }
@@ -63,12 +62,11 @@
             animation: pulse 1.5s infinite; text-transform: uppercase;
         }
         .logo-container {
-            display: none; /* Shown after tap */
+            display: none;
             position: relative; width: 300px; height: 300px;
             flex-direction: column; align-items: center; justify-content: center;
         }
         
-        /* Hexagon SVG Animation */
         .hex-svg {
             width: 280px; height: 280px; position: absolute;
             animation: spinFractal 15s linear infinite; z-index: 1;
@@ -87,7 +85,6 @@
         @keyframes spinFractal { to { transform: rotate(360deg); } }
         @keyframes spinFractalReverse { to { transform: rotate(-360deg); } }
 
-        /* Typography */
         .tricky-text {
             position: absolute;
             font-size: 38px; font-weight: 900;
@@ -123,7 +120,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); overflow: hidden; position: relative;
         }
 
-        /* --- TOP HEADER (GYRO + TOGGLES) --- */
+        /* --- TOP HEADER --- */
         .header-row {
             display: flex; flex-direction: row; height: 10vh; gap: 6px; flex-shrink: 0; width: 100%;
         }
@@ -206,7 +203,7 @@
         }
         .playback-info { position: absolute; bottom: 5px; right: 10px; font-family: monospace; font-size: 12px; font-weight: bold; color: #00aaff; background: rgba(0, 170, 255, 0.1); padding: 3px 6px; border-radius: 6px;}
 
-        /* --- COLLAPSIBLE SIDEBAR (LEFT) --- */
+        /* --- SIDEBARS --- */
         .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 99; display: none; }
         .sidebar {
             position: fixed; top: 0; left: -200px; width: 180px; height: 100vh;
@@ -216,7 +213,6 @@
         }
         .sidebar.open { left: 0; }
         
-        /* --- COLLAPSIBLE AD COLUMN (RIGHT) --- */
         .ad-sidebar {
             position: fixed; top: 0; right: -20vw; width: 10vw; min-width: 80px; 
             height: 100vh; background: #111; border-left: 2px solid #333; z-index: 100;
@@ -501,12 +497,19 @@
     </div>
 
     <div id="mistakeModal" class="modal">
-        <div class="modal-content" style="text-align: center;">
+        <div class="modal-content" style="text-align: center; max-height: 90vh; overflow-y: auto;">
             <h2 id="mistakeTitle" style="color: #00aaff; font-size: 20px; border-bottom: none; margin-bottom: 5px;">Mistake Title</h2>
             <div id="mistakeProb" style="font-size: 12px; color: #ffaa00; margin-bottom: 15px; font-weight: bold;">Confidence Score: -- pts</div>
-            <p id="mistakeDesc" style="font-size: 13px; color: #ddd; line-height: 1.5; text-align: left; background: #1a1a1a; padding: 12px; border-radius: 8px; border-left: 4px solid #00aaff;">
-                Detailed description goes here.
-            </p>
+            
+            <div style="text-align: left; background: #1a1a1a; padding: 12px; border-radius: 8px; border-left: 4px solid #00aaff; margin-bottom: 15px;">
+                <p id="mistakeDesc" style="font-size: 13px; color: #ddd; line-height: 1.5; margin: 0 0 10px 0;">
+                    Detailed description goes here.
+                </p>
+                
+                <h4 style="font-size: 10px; color: #888; margin: 10px 0 4px 0; text-transform: uppercase;">Expected Kinematics:</h4>
+                <div id="modalExpectedMoves" style="display:flex; flex-wrap:wrap; gap:4px;"></div>
+            </div>
+
             <a id="mistakeLink" href="#" target="_blank" style="display: block; background: #ff0000; color: white; padding: 12px; border-radius: 8px; text-decoration: none; margin-top: 15px; font-weight: bold; font-size: 14px;">
                 ▶ Watch Correction on YouTube
             </a>
@@ -547,6 +550,17 @@
             }, 500);
         }, 3000);
     }
+
+    // --- GLOBAL KINEMATIC DEFINITIONS ---
+    const moveDetails = {
+        "Up": { icon: "⬆️", type: "Trans", axis: "Z-Axis" },
+        "Down": { icon: "⬇️", type: "Trans", axis: "Z-Axis" },
+        "Left": { icon: "⬅️", type: "Trans", axis: "X-Axis" },
+        "Right": { icon: "➡️", type: "Trans", axis: "X-Axis" },
+        "Roll": { icon: "🔄", type: "Rot", axis: "Z-Axis" },
+        "Pitch": { icon: "🔃", type: "Rot", axis: "X-Axis" },
+        "Yaw": { icon: "↪️", type: "Rot", axis: "Y-Axis" }
+    };
 
     // --- GLOBAL STATE ---
     let userProfile = {};
@@ -628,15 +642,39 @@
         closeSettingsModal();
     }
 
+    // --- UPDATED MISTAKE MODAL LOGIC ---
     function openMistakeModal(name, score) {
         let mistake = mistakeDB.find(m => m.name === name);
         if (!mistake) return;
+        
         document.getElementById('mistakeTitle').innerText = mistake.name;
         document.getElementById('mistakeProb').innerText = `Engine Confidence Score: ${score} pts`;
         document.getElementById('mistakeDesc').innerText = mistake.desc;
         document.getElementById('mistakeLink').href = mistake.url;
+
+        // Build the rich visual tags for the expected movements based on our moveDetails mapping
+        let expectedHtml = mistake.tele.map(moveName => {
+            let details = moveDetails[moveName] || { icon: "⏺️", type: "Unk", axis: "Unk" };
+            return `
+                <span style="background: #222; padding: 3px 6px; border-radius: 4px; font-size: 9px; border: 1px solid #444; color: #ccc;">
+                    ${details.icon} <strong style="color:#fff;">${moveName}</strong> (${details.type} ${details.axis})
+                </span>
+            `;
+        }).join('');
+
+        // Also display the expected visual impacts (where the hole appears on target)
+        if(mistake.vis && mistake.vis.length > 0) {
+             expectedHtml += mistake.vis.map(v => `
+                 <span style="background: rgba(0, 170, 255, 0.1); padding: 3px 6px; border-radius: 4px; font-size: 9px; border: 1px solid #00aaff; color: #00aaff;">
+                     👁️ <strong>Vision:</strong> ${v}
+                 </span>
+             `).join('');
+        }
+
+        document.getElementById('modalExpectedMoves').innerHTML = expectedHtml;
         document.getElementById('mistakeModal').style.display = 'flex';
     }
+
     function closeMistakeModal() { document.getElementById('mistakeModal').style.display = 'none'; }
 
     function shareResults() {
@@ -904,14 +942,14 @@
             let relTime = Math.round(s.time_ms - shotTime); 
             let adjustedZ = (s.az || 0) - 9.8;
 
-            if (s.ax > ACCEL_MOVE_THRESH) addMove("Right", "Trans", "X-Axis", "➡️", relTime);
-            if (s.ax < -ACCEL_MOVE_THRESH) addMove("Left", "Trans", "X-Axis", "⬅️", relTime);
-            if (adjustedZ > ACCEL_MOVE_THRESH) addMove("Up", "Trans", "Z-Axis", "⬆️", relTime);
-            if (adjustedZ < -ACCEL_MOVE_THRESH) addMove("Down", "Trans", "Z-Axis", "⬇️", relTime);
+            if (s.ax > ACCEL_MOVE_THRESH) addMove("Right", moveDetails["Right"].type, moveDetails["Right"].axis, moveDetails["Right"].icon, relTime);
+            if (s.ax < -ACCEL_MOVE_THRESH) addMove("Left", moveDetails["Left"].type, moveDetails["Left"].axis, moveDetails["Left"].icon, relTime);
+            if (adjustedZ > ACCEL_MOVE_THRESH) addMove("Up", moveDetails["Up"].type, moveDetails["Up"].axis, moveDetails["Up"].icon, relTime);
+            if (adjustedZ < -ACCEL_MOVE_THRESH) addMove("Down", moveDetails["Down"].type, moveDetails["Down"].axis, moveDetails["Down"].icon, relTime);
 
-            if (Math.abs(s.gx) > GYRO_MOVE_THRESH) addMove("Roll", "Rot", "Z-Axis", "🔄", relTime);
-            if (Math.abs(s.gy) > GYRO_MOVE_THRESH) addMove("Pitch", "Rot", "X-Axis", "🔃", relTime);
-            if (Math.abs(s.gz) > GYRO_MOVE_THRESH) addMove("Yaw", "Rot", "Y-Axis", "↪️", relTime);
+            if (Math.abs(s.gx) > GYRO_MOVE_THRESH) addMove("Roll", moveDetails["Roll"].type, moveDetails["Roll"].axis, moveDetails["Roll"].icon, relTime);
+            if (Math.abs(s.gy) > GYRO_MOVE_THRESH) addMove("Pitch", moveDetails["Pitch"].type, moveDetails["Pitch"].axis, moveDetails["Pitch"].icon, relTime);
+            if (Math.abs(s.gz) > GYRO_MOVE_THRESH) addMove("Yaw", moveDetails["Yaw"].type, moveDetails["Yaw"].axis, moveDetails["Yaw"].icon, relTime);
         }
 
         let eventTime = shotTime;
@@ -943,7 +981,6 @@
             </div>
         `).join('');
 
-        /* Notice the 'visible' class added directly into the HTML so it always renders */
         document.getElementById('kinematicList').insertAdjacentHTML('beforeend', `
             <div class="card result-card visible" data-time="${eventTime}" style="border-left-color: #ff3b30;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -1036,7 +1073,7 @@
                     let shotID = persistentShots.length;
                     let visHtml = diag.m.map((m, i) => `
                         <div class="mistake"><span style="color:#ddd">${i+1}. ${m.n}</span></div>`).join('');
-                    /* Notice 'visible' class here too */
+                    
                     document.getElementById('shotList').insertAdjacentHTML('beforeend', `
                         <div class="card result-card visible" data-time="${vidTimeMs}" style="border-left-color: #00aaff;">
                             <h4 style="color:#00aaff;">V-${shotID}</h4>
@@ -1207,7 +1244,6 @@
         }
 
         let currentMs = s.time_ms;
-        // Fix for missing results: if scrubber is at the end, force all to be visible
         let isAtEnd = playbackProgress >= 0.99;
         
         document.querySelectorAll('.result-card').forEach(c => {
